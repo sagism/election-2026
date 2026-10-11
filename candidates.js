@@ -17,20 +17,6 @@ window.CANDIDATES = {
   bw: ["גנץ בנימין", "תמנו פנינה (פנחש)", "בלוך גאולה עליזה", "קונקול רועי", "אבידר צאליק רתם", "שוסטר אלון נתן"]
 };
 
-// תמונות ראשי הרשימות: ויקישיתוף (Wikimedia Commons), חתוכות ומוקטנות
-window.PHOTOS = {
-  likud: { file: "Benjamin_Netanyahu,_February_2023.jpg", author: "אבי אוחיון", lic: "CC BY-SA 3.0" },
-  yashar: { file: "Gadi_Eisenkot_2_(cropped).jpg", author: "יהב טרודלר", lic: "CC BY-SA 3.0" },
-  together: { file: "Naftali_Bennett_official_portrait.jpg", author: "אבי אוחיון", lic: "CC BY-SA 3.0" },
-  dems: { file: "Yair_Golan_(SHL_9404)_(3x4_cropped).jpg", author: "שלומי אמסלם", lic: "CC BY-SA 4.0" },
-  yb: { file: "Avigdor_Lieberman_2017.jpg", author: "Jim Mattis", lic: "נחלת הכלל" },
-  utj: { file: "Yaakev_asher.jpg", author: "Yossistinknesset", lic: "CC BY-SA 4.0" },
-  shas: { file: "Aryeh_Deri_(E32J1375).jpg", author: "נתי שוחט", lic: "CC BY-SA 4.0" },
-  otzma: { file: "Itamar_Ben_Gvir_3_(cropped).jpg", author: "אלון נוריאל", lic: "CC BY-SA 3.0" },
-  rzp: { file: "Bezalel_Smotrich.jpg", author: "אבי אוחיון", lic: "CC BY-SA 3.0" },
-  joint: { file: "Yousef_Jabareen_2021.png", author: "Amir Deeb", lic: "CC BY-SA 4.0" },
-  raam: { file: "Mansour_Abbas_April_3,_2023_16.jpg", author: "U.S. Embassy Jerusalem", lic: "CC BY 2.0" },
-  amcha: { file: "Ofer_Winter_2026.png", author: "Nadav Margalit", lic: "CC BY-SA 4.0" },
-  reservists: { file: "Yoaz_Hendel_(ISH_6916).jpg", author: "יצחק הררי", lic: "CC BY-SA 4.0" },
-  bw: { file: "Israeli_Minister_Benny_Gantz_at_the_Department_of_State_in_Washington,_D.C._on_March_5,_2024_(cropped).jpg", author: "U.S. Department of State", lic: "נחלת הכלל" }
-};
+// תמונות ראשי הרשימות (img/<id>.jpg, מוקטנות מ-img/people). ברשימות בהובלה זוגית: תמונה זוגית.
+window.PHOTOS = Object.fromEntries(["likud","yashar","together","dems","yb","utj","shas","otzma","rzp","joint","raam","amcha","reservists","bw"].map(k => [k, { credit: "איור: מדריך הבחירות" }]));
+window.PHOTO_ALT = { together: "נפתלי בנט ויאיר לפיד", reservists: "יועז הנדל וירון זליכה" };
