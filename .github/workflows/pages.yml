@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html party.html style.css *.js _site/
-          mkdir -p _site/img && cp img/*.jpg _site/img/
+          mkdir -p _site/img && cp img/*.webp _site/img/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

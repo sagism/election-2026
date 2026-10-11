@@ -17,6 +17,6 @@ window.CANDIDATES = {
   bw: ["גנץ בנימין", "תמנו פנינה (פנחש)", "בלוך גאולה עליזה", "קונקול רועי", "אבידר צאליק רתם", "שוסטר אלון נתן"]
 };
 
-// תמונות ראשי הרשימות (img/<id>.jpg, מוקטנות מ-img/people). ברשימות בהובלה זוגית: תמונה זוגית.
-window.PHOTOS = Object.fromEntries(["likud","yashar","together","dems","yb","utj","shas","otzma","rzp","joint","raam","amcha","reservists","bw"].map(k => [k, { credit: "איור: מדריך הבחירות" }]));
+// תמונות ראשי הרשימות (img/<id>.webp, רקע שקוף, מתוך img/portraits-transparent). ברשימות בהובלה זוגית: תמונה זוגית.
+window.PHOTOS = Object.fromEntries(["likud","yashar","together","dems","yb","utj","shas","otzma","rzp","joint","raam","amcha","reservists","bw"].map(k => [k, { credit: "איור שנוצר בבינה מלאכותית עבור המדריך" }]));
 window.PHOTO_ALT = { together: "נפתלי בנט ויאיר לפיד", reservists: "יועז הנדל וירון זליכה" };

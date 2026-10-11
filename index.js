@@ -26,7 +26,9 @@
     raw.forEach(r => { r.n = Math.floor(r.q); r.rem = r.q - r.n; });
     let left = 120 - raw.reduce((s, r) => s + r.n, 0);
     [...raw].sort((a, b) => b.rem - a.rem).forEach(r => { if (left > 0) { r.n++; left--; } });
-    return raw;
+    // מקבצים לפי משפחה, ובתוך משפחה לפי גודל
+    const famIdx = id => E.FAMILIES.findIndex(f => f.ids.includes(id));
+    return raw.sort((a, b) => famIdx(a.id) - famIdx(b.id) || b.q - a.q);
   }
   function drawHemicycle(rows) {
     const seats = seatsFromAvg(rows);

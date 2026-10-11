@@ -4,15 +4,15 @@
   const byId = Object.fromEntries(E.parties.map(p => [p.id, p]));
 
   // צבע זיהוי לפי משפחה (הסיווג המקובל בתקשורת), גוון נפרד לכל רשימה. הערכים עצמם ב-style.css (--c-<id>), עם גרסה לתצוגה כהה.
-  // כחולים: ימין ציוני · סגולים: מרכז · אדום: שמאל · טורקיז: ימין דתי-לאומי · שחור וזהב: חרדים · ירוקים: מפלגות ערביות
   const COLORS = Object.fromEntries(E.parties.map(p => [p.id, `var(--c-${p.id})`]));
+  // סדר המשפחות קובע גם את סדר המושבים במפת הכנסת (מימין לשמאל)
   E.FAMILIES = [
-    { label: "ימין ציוני", ids: ["likud", "yb", "amcha"] },
-    { label: "מרכז", ids: ["yashar", "together", "reservists", "bw"] },
-    { label: "שמאל", ids: ["dems"] },
-    { label: "ימין דתי-לאומי", ids: ["rzp", "otzma"] },
-    { label: "חרדים", ids: ["shas", "utj"] },
-    { label: "מפלגות ערביות", ids: ["joint", "raam"] }
+    { label: "חרדים", hue: "זהב", ids: ["shas", "utj"] },
+    { label: "ימין דתי-לאומי", hue: "טורקיז", ids: ["rzp", "otzma"] },
+    { label: "ימין ציוני", hue: "כחול", ids: ["likud", "yb", "amcha"] },
+    { label: "מרכז", hue: "סגול", ids: ["yashar", "together", "reservists", "bw"] },
+    { label: "שמאל", hue: "אדום", ids: ["dems"] },
+    { label: "מפלגות ערביות", hue: "ירוק", ids: ["joint", "raam"] }
   ];
   E.parties.forEach(p => { p.color = COLORS[p.id] || "#666"; });
 
@@ -79,7 +79,7 @@
   function photo(p, size) {
     const ph = PH[p.id];
     const alt = (window.PHOTO_ALT || {})[p.id] || p.leader.split(",")[0];
-    return `<span class="avatar ${size || ""}" style="--pc:${p.color}">${ph ? `<img src="img/${p.id}.jpg" alt="${esc(alt)}" loading="lazy" width="96" height="96">` : ""}</span>`;
+    return `<span class="avatar ${size || ""}" style="--pc:${p.color}">${ph ? `<img src="img/${p.id}.webp" alt="${esc(alt)}" loading="lazy" width="96" height="96">` : ""}</span>`;
   }
   function photoCredit(id) {
     const ph = PH[id];
