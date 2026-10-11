@@ -3,12 +3,17 @@
   const E = window.ELECTION, P = window.POLLS || [], C = window.CANDIDATES || {}, PH = window.PHOTOS || {};
   const byId = Object.fromEntries(E.parties.map(p => [p.id, p]));
 
-  // צבע זיהוי לכל רשימה (לנוחות קריאה בלבד, לא צבעי מותג רשמיים)
-  const COLORS = {
-    likud: "#2459d6", yashar: "#0d9f99", together: "#6b3fd4", dems: "#e0334a", yb: "#0a84c6",
-    utj: "#46566e", shas: "#b5651d", otzma: "#e9a100", rzp: "#4f7d12", joint: "#d0368a",
-    raam: "#0f9a63", amcha: "#ec6a1c", reservists: "#8d7a3a", bw: "#3fa9e8"
-  };
+  // צבע זיהוי לפי משפחה (הסיווג המקובל בתקשורת), גוון נפרד לכל רשימה. הערכים עצמם ב-style.css (--c-<id>), עם גרסה לתצוגה כהה.
+  // כחולים: ימין ציוני · סגולים: מרכז · אדום: שמאל · טורקיז: ימין דתי-לאומי · שחור וזהב: חרדים · ירוקים: מפלגות ערביות
+  const COLORS = Object.fromEntries(E.parties.map(p => [p.id, `var(--c-${p.id})`]));
+  E.FAMILIES = [
+    { label: "ימין ציוני", ids: ["likud", "yb", "amcha"] },
+    { label: "מרכז", ids: ["yashar", "together", "reservists", "bw"] },
+    { label: "שמאל", ids: ["dems"] },
+    { label: "ימין דתי-לאומי", ids: ["rzp", "otzma"] },
+    { label: "חרדים", ids: ["shas", "utj"] },
+    { label: "מפלגות ערביות", ids: ["joint", "raam"] }
+  ];
   E.parties.forEach(p => { p.color = COLORS[p.id] || "#666"; });
 
   function esc(s) {

@@ -41,11 +41,12 @@
     const order = [];
     seats.forEach(s => { for (let k = 0; k < s.n; k++) order.push(s.id); });
     const sr = 7.2;
-    const circles = pts.map((p, i) => { const id = order[i]; const col = id ? byId[id].color : "var(--rule)"; return `<circle class="seat" style="--i:${i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${sr}" fill="${col}"><title>${id ? esc(byId[id].short) : ""}</title></circle>`; }).join("");
+    const circles = pts.map((p, i) => { const id = order[i]; const col = id ? byId[id].color : "var(--rule)"; return `<circle class="seat" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${sr}" style="--i:${i};fill:${col}"><title>${id ? esc(byId[id].short) : ""}</title></circle>`; }).join("");
     $("hemicycle").innerHTML = `<svg viewBox="0 0 ${W} ${H + 6}">${circles}
       <text class="mid" x="${cx}" y="${cy - 26}" text-anchor="middle" font-size="40">120</text>
       <text class="mid-sub" x="${cx}" y="${cy - 4}" text-anchor="middle">מושבים · 61 לרוב</text></svg>`;
     $("kLegend").innerHTML = seats.map(s => `<span style="--pc:${byId[s.id].color}"><i></i>${esc(byId[s.id].short)} ${s.n}</span>`).join("") + `<span class="muted">לפי ממוצע הסקרים, ללא חישוב עודפים</span>`;
+    $("families").innerHTML = E.FAMILIES.map(f => `<span class="fam"><span class="sw">${f.ids.map(id => `<i style="background:${byId[id].color}"></i>`).join("")}</span>${f.label}</span>`).join("") + `<span>הצבעים מקבצים לפי הסיווג המקובל בתקשורת, לנוחות בלבד</span>`;
   }
 
   // ---------- seat chart ----------

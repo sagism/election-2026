@@ -19,13 +19,21 @@
   --display: "Secular One", "Rubik", "Arial Hebrew", Arial, sans-serif;
   --body: "Assistant", "Segoe UI", Arial, sans-serif;
   --radius: 16px;
+  --c-likud: #1f45c4; --c-yb: #1c8ad6; --c-amcha: #0b5b8a;
+  --c-yashar: #6a3de0; --c-together: #a33bd1; --c-reservists: #74479c; --c-bw: #d23b93;
+  --c-dems: #e0283c;
+  --c-rzp: #0f9e92; --c-otzma: #0b6f7d;
+  --c-shas: #c89400; --c-utj: #1d2230;
+  --c-joint: #23a14e; --c-raam: #0a6b4a;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0e111b; --surface: #171b29; --surface-2: #1f2435; --ink: #eef0f7; --ink-2: #a3abc0; --rule: #2a3044;
     --accent: #ff7b5f; --accent-ink: #1a0f0c; --good: #4fd18b; --warn: #f0b84a; --slip-bg: #f4f3ee; --slip-ink: #111;
     --hero-a: #2a1a1b; --hero-b: #161f3a; --hero-c: #13271f;
-    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7); color-scheme: dark;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);     --c-likud: #4a6fea; --c-yb: #3aa3ea; --c-amcha: #2b86bd; --c-yashar: #8d68f0; --c-together: #c062e8; --c-reservists: #9a6cc4; --c-bw: #e45fae;
+    --c-dems: #f0485a; --c-rzp: #1fc0b1; --c-otzma: #1597a6; --c-shas: #e2ad1c; --c-utj: #8792ad; --c-joint: #3cc36a; --c-raam: #17936a;
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
@@ -33,6 +41,8 @@
   --accent: #ff7b5f; --accent-ink: #1a0f0c; --good: #4fd18b; --warn: #f0b84a; --slip-bg: #f4f3ee; --slip-ink: #111;
   --hero-a: #2a1a1b; --hero-b: #161f3a; --hero-c: #13271f;
   --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7); color-scheme: dark;
+  --c-likud: #4a6fea; --c-yb: #3aa3ea; --c-amcha: #2b86bd; --c-yashar: #8d68f0; --c-together: #c062e8; --c-reservists: #9a6cc4; --c-bw: #e45fae;
+  --c-dems: #f0485a; --c-rzp: #1fc0b1; --c-otzma: #1597a6; --c-shas: #e2ad1c; --c-utj: #8792ad; --c-joint: #3cc36a; --c-raam: #17936a;
 }
 
 * { box-sizing: border-box; }
@@ -137,7 +147,7 @@ section > header p { margin: 6px 0 0; max-width: 70ch; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
 .card { position: relative; background: var(--surface); border: 1px solid var(--rule); border-radius: 20px; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s; overflow: hidden; }
 .card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px -14px color-mix(in srgb, var(--pc) 55%, transparent); }
-.card-band { margin-inline: -16px; height: 64px; background: linear-gradient(120deg, var(--pc), color-mix(in srgb, var(--pc) 55%, white)); position: relative; }
+.card-band { margin-inline: -16px; height: 64px; background: linear-gradient(120deg, var(--pc), color-mix(in srgb, var(--pc) 72%, #000)); position: relative; }
 .card-band .seats { position: absolute; inset-inline-end: 92px; text-align: end; top: 10px; color: #fff; font-family: var(--display); font-size: 1.9rem; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
 .card-band .seats small { font-family: var(--body); font-size: .75rem; font-weight: 700; display: block; opacity: .9; margin-top: 2px; }
 .card-band .slip { position: absolute; inset-inline-end: 14px; top: 12px; }
@@ -268,3 +278,8 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 .credit { font-size: .75rem; color: var(--ink-2); }
 .phero .credit { color: rgba(255,255,255,.8); }
 .phero .credit a { color: #fff; }
+
+.families { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: .82rem; color: var(--ink-2); }
+.families .fam { display: inline-flex; align-items: center; gap: 6px; }
+.families .sw { display: inline-flex; }
+.families .sw i { width: 12px; height: 12px; border-radius: 50%; margin-inline-start: -3px; box-shadow: 0 0 0 2px var(--surface); }
