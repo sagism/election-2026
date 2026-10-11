@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מפלגה · מדריך בחירות 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Secular+One&family=Frank+Ruhl+Libre:wght@900&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">26</span>← חזרה למדריך</a>
+    <button class="btn" id="themeBtn" type="button">◐ אוטומטי</button>
+  </div>
+  <nav class="pnav" id="pnav" aria-label="מעבר בין מפלגות"></nav>
+
+  <div id="notFound" hidden>
+    <h1>לא נמצאה מפלגה</h1>
+    <p>בחרו מפלגה מהרשימה שלמעלה, או <a href="index.html#parties">חזרו לרשימת המפלגות</a>.</p>
+  </div>
+
+  <main id="page" hidden>
+    <div class="phero rise" id="pHero">
+      <div id="pPhoto"></div>
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.85)" id="pCamp"></div>
+        <h1 id="pName"></h1>
+        <div class="ballot" id="pBallot"></div>
+        <div class="credit" id="pCredit"></div>
+      </div>
+      <div id="pSlip" style="margin-inline-start:auto"></div>
+    </div>
+    <div class="kpis" id="pKpis"></div>
+    <p id="pBlurb" style="max-width:70ch;font-size:1.08rem"></p>
+
+    <section aria-labelledby="coal-h">
+      <header><h2 id="coal-h">עם מי בממשלה?</h2></header>
+      <p id="pCoalSummary" style="max-width:70ch;font-weight:700;font-size:1.08rem"></p>
+      <ul class="quotes" id="pQuotes"></ul>
+      <p class="small" id="pSurplus"></p>
+    </section>
+
+    <section aria-labelledby="pos-h">
+      <header><h2 id="pos-h">עמדות לפי נושא</h2><a class="btn" id="pPlatform" target="_blank" rel="noopener"></a></header>
+      <div class="issues" id="pIssues"></div>
+    </section>
+
+    <div class="two">
+      <section aria-labelledby="list-h">
+        <header><div><h2 id="list-h">מועמדים במקום ריאלי</h2><a class="small" id="pListPdf" target="_blank" rel="noopener">הרשימה המלאה כפי שהוגשה לוועדה (PDF)</a></div></header>
+        <div class="panel" style="padding:14px" id="pList"></div>
+      </section>
+      <section aria-labelledby="trend-h">
+        <header><div><h2 id="trend-h">מגמה בסקרים</h2><p class="small muted">כל נקודה היא סקר. הקו הוא ממוצע נע של 5 סקרים. הקו המקווקו: אחוז החסימה.</p></div></header>
+        <div class="trend panel" id="pTrend"></div>
+      </section>
+    </div>
+
+    <section aria-labelledby="ptable-h">
+      <header><h2 id="ptable-h">הסקרים האחרונים</h2></header>
+      <div class="tablewrap panel"><table id="pPolls"></table></div>
+    </section>
+  </main>
+
+  <footer class="foot panel">
+    <p>הדף מציג מה שהמפלגה אמרה או כתבה, עם קישור למקור. הוא לא מעריך את העמדות ולא ממליץ. צבעים לזיהוי בלבד.</p>
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="polls.js"></script>
+<script src="candidates.js"></script>
+<script src="common.js"></script>
+<script src="party.js"></script>
+</body>
+</html>

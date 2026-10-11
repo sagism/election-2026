@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מדריך בחירות 2026</title>
+<meta name="description" content="מדריך ניטרלי לבחירות לכנסת ה-26: מפלגות, מועמדים, עמדות, הסכמי עודפים וסקרים מתוך אתר ועדת הבחירות.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Secular+One&family=Frank+Ruhl+Libre:wght@900&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap" dir="rtl" lang="he">
+  <div class="topbar rise">
+    <a class="brand" href="#top"><span class="brand-mark">26</span>מדריך הבחירות</a>
+    <button class="btn" id="themeBtn" type="button">◐ אוטומטי</button>
+  </div>
+
+  <div class="hero" id="top">
+    <div>
+      <div class="eyebrow rise" style="--i:1">הבחירות לכנסת ה-26 · 27 באוקטובר 2026</div>
+      <h1 class="rise" style="--i:2">למי להצביע? כל המפלגות במקום אחד</h1>
+      <p class="lead rise" style="--i:3">מי בראש הרשימה, מי נכנס בפועל, מה כל מפלגה אומרת בנושאים הגדולים, עם מי חתמה על עודפים ועם מי הצהירה שתשב בממשלה. בלי המלצות, עם מקור לכל טענה.</p>
+      <div class="hero-stats">
+        <div class="stat hot rise" style="--i:4"><b id="daysLeft" class="num">–</b><span class="small">ימים לבחירות</span></div>
+        <div class="stat rise" style="--i:5"><b>38</b><span class="small">רשימות בפתקים</span></div>
+        <div class="stat rise" style="--i:6"><b id="pollCount">–</b><span class="small">סקרים רשמיים</span></div>
+        <div class="stat rise" style="--i:7"><b>3.25%</b><span class="small">אחוז החסימה</span></div>
+      </div>
+      <p class="small muted rise" style="--i:8" id="updatedLine"></p>
+    </div>
+    <figure class="knesset" style="margin:0">
+      <div id="hemicycle" role="img" aria-label="חלוקת 120 המושבים לפי ממוצע הסקרים"></div>
+      <figcaption class="k-legend" id="kLegend"></figcaption>
+    </figure>
+  </div>
+
+  <nav class="toc" aria-label="ניווט בדף">
+    <a href="#polls-avg">סקרים</a>
+    <a href="#parties">מפלגות ומועמדים</a>
+    <a href="#compare">השוואת עמדות</a>
+    <a href="#coalition">מחשבון קואליציה</a>
+    <a href="#surplus">הסכמי עודפים</a>
+    <a href="#polls">כל הסקרים</a>
+    <a href="#about">מקורות</a>
+  </nav>
+
+  <section aria-labelledby="facts-h">
+    <header><h2 id="facts-h">מה חשוב לדעת עכשיו</h2></header>
+    <ul class="facts" id="facts"></ul>
+  </section>
+
+  <section id="polls-avg" aria-labelledby="avg-h">
+    <header>
+      <div>
+        <h2 id="avg-h">ממוצע הסקרים</h2>
+        <p class="muted small" id="avgNote"></p>
+      </div>
+      <div class="controls" role="group" aria-label="הגדרות ממוצע">
+        <button class="btn" type="button" data-days="7">7 ימים</button>
+        <button class="btn" type="button" data-days="14">14 ימים</button>
+        <button class="btn" type="button" data-days="30">30 ימים</button>
+        <label class="btn" for="latestOnly"><input type="checkbox" id="latestOnly" checked> הסקר האחרון של כל סוקר</label>
+      </div>
+    </header>
+    <div class="chart panel" id="seatChart"></div>
+    <p class="small muted">העמודה היא הממוצע. הקו הדק מראה את הטווח בין הסקר הנמוך לגבוה בתקופה. הקו המקווקו: אחוז החסימה (כ-4 מנדטים).</p>
+  </section>
+
+  <section id="parties" aria-labelledby="parties-h">
+    <header>
+      <div>
+        <h2 id="parties-h">המפלגות והמועמדים</h2>
+        <p class="muted small">14 הרשימות שנבדקות בסקרים, לפי ממוצע הסקרים. "מועמדים" פותח את מי שנמצא במקום ריאלי לפי הסקרים.</p>
+      </div>
+    </header>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="compare" aria-labelledby="compare-h">
+    <header>
+      <div>
+        <h2 id="compare-h">השוואת עמדות לפי נושא</h2>
+        <p class="muted small">תמצית של מה שהמפלגות עצמן אמרו או כתבו. "לא נמצאה עמדה מפורשת" לא אומר שאין למפלגה עמדה.</p>
+      </div>
+    </header>
+    <div class="tablewrap panel"><table class="compare" id="compareTable"></table></div>
+  </section>
+
+  <section id="coalition" aria-labelledby="coal-h">
+    <header>
+      <div>
+        <h2 id="coal-h">מחשבון קואליציה</h2>
+        <p class="muted small">סמנו מפלגות וראו אם הן מגיעות ל-61 לפי ממוצע הסקרים. אם הצירוף סותר הצהרות של המפלגות, תופיע הערה.</p>
+      </div>
+      <button class="btn" type="button" id="clearCalc">ניקוי</button>
+    </header>
+    <div class="calc">
+      <div class="picks" id="picks"></div>
+      <div class="total panel" aria-live="polite">
+        <div class="small muted">סך המנדטים שסומנו</div>
+        <b id="calcTotal">0</b>
+        <div class="meter" id="calcBar"><span class="mark" style="inset-inline-start: calc(61 / 120 * 100%)"></span></div>
+        <div class="small muted">הקו מסמן 61 מתוך 120</div>
+        <p id="calcStatus" class="small"></p>
+        <div id="calcWarnings" class="small warnbox"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="surplus" aria-labelledby="surplus-h">
+    <header>
+      <div>
+        <h2 id="surplus-h">הסכמי עודפים</h2>
+        <p class="muted small">הסכם עודפים לא מעביר קולות. בחלוקת המנדטים האחרונים שתי הרשימות נספרות כאחת, וזה יכול להוסיף לאחת מהן מנדט. ההסכם תקף רק אם שתיהן עוברות את אחוז החסימה. מועד אחרון לחתימה: <span id="surplusDeadline"></span>.</p>
+      </div>
+    </header>
+    <div class="surplus" id="surplusList"></div>
+    <p class="small muted" id="noSurplus"></p>
+  </section>
+
+  <section id="polls" aria-labelledby="polls-h">
+    <header>
+      <div>
+        <h2 id="polls-h">כל הסקרים</h2>
+        <p class="muted small">סקרי מנדטים שדווחו לוועדת הבחירות המרכזית, עם קישור לקובץ המקורי. "—" פירושו שהמפלגה לא הופיעה בטבלת הסקר.</p>
+      </div>
+      <div class="controls">
+        <label class="small" for="pollsterFilter">סוקר:</label>
+        <select id="pollsterFilter" class="btn"><option value="">כולם</option></select>
+      </div>
+    </header>
+    <div class="tablewrap panel"><table class="polls" id="pollsTable"></table></div>
+  </section>
+
+  <section aria-labelledby="others-h">
+    <header>
+      <div>
+        <h2 id="others-h">רשימות נוספות בפתקים</h2>
+        <p class="muted small">24 הרשימות האחרות שאושרו. אף אחת מהן לא עברה את אחוז החסימה בסקרים.</p>
+      </div>
+    </header>
+    <div class="others" id="others"></div>
+  </section>
+
+  <footer class="foot panel" id="about">
+    <h3>מקורות ושיטה</h3>
+    <p><b>סקרים:</b> כל סקר שמתפרסם מדווח לוועדת הבחירות המרכזית. המנדטים נשלפו מקובצי ה-PDF שבאתר הוועדה (<a href="https://www.gov.il/he/Departments/DynamicCollectors/knesset_election_polls_26" target="_blank" rel="noopener">סקרי בחירות לכנסת</a>). הממוצע מחושב על הסקרים שבחלון הזמן שנבחר, ביחס לסקר האחרון. כברירת מחדל נלקח רק הסקר האחרון של כל סוקר.</p>
+    <p><b>מועמדים:</b> קובצי הרשימות הרשמיים שפרסם <a href="https://www.idi.org.il/policy/parties-and-elections/elections/2026-1/" target="_blank" rel="noopener">המכון הישראלי לדמוקרטיה</a>. "מקום ריאלי" הוא עד המקום הגבוה ביותר שהמפלגה קיבלה בסקר כלשהו מאז סגירת הרשימות. <b>אותיות:</b> <a href="https://www.ynet.co.il/news/article/s1ibdii5fe" target="_blank" rel="noopener">ynet</a>, לפי פרסום ועדת הבחירות.</p>
+    <p><b>עמדות והצהרות:</b> אתרי המפלגות, ynet, N12, כאן, סרוגים, ומאגר <a href="https://polimeter.co.il/parties" target="_blank" rel="noopener">פולימטר</a>. כדאי לבדוק את המקור המקורי לפני ציטוט.</p>
+    <p><b>תמונות:</b> איורים שהוכנו עבור המדריך. ברשימות שבהובלה זוגית מוצגים שני המובילים. <b>צבעים:</b> לזיהוי בלבד, אינם צבעי המפלגות הרשמיים. <b>"מחנה":</b> הסיווג המקובל בתקשורת.</p>
+    <p>המדריך לא ממליץ על אף מפלגה. ההסכמים וההצהרות משתנים מיום ליום; תאריך העדכון מופיע בראש הדף.</p>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="polls.js"></script>
+<script src="candidates.js"></script>
+<script src="common.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
