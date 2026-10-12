@@ -43,13 +43,22 @@
     const order = [];
     seats.forEach(s => { for (let k = 0; k < s.n; k++) order.push(s.id); });
     const sr = 7.2;
-    const circles = pts.map((p, i) => { const id = order[i]; const col = id ? byId[id].color : "var(--rule)"; return `<circle class="seat" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${sr}" style="--i:${i};fill:${col}"><title>${id ? esc(byId[id].short) : ""}</title></circle>`; }).join("");
+    const circles = pts.map((p, i) => { const id = order[i]; const col = id ? byId[id].color : "var(--rule)"; const c = `<circle class="seat" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${sr}" style="--i:${i};fill:${col}"><title>${id ? esc(byId[id].short) + " · לחצו לפרטים" : ""}</title></circle>`; return id ? `<a href="party.html#${id}" data-p="${id}" aria-label="${esc(byId[id].short)}">${c}</a>` : c; }).join("");
     $("hemicycle").innerHTML = `<svg viewBox="0 0 ${W} ${H + 6}">${circles}
       <text class="mid" x="${cx}" y="${cy - 26}" text-anchor="middle" font-size="40">120</text>
       <text class="mid-sub" x="${cx}" y="${cy - 4}" text-anchor="middle">מושבים · 61 לרוב</text></svg>`;
-    $("kLegend").innerHTML = seats.map(s => `<span style="--pc:${byId[s.id].color}"><i></i>${esc(byId[s.id].short)} ${s.n}</span>`).join("") + `<span class="muted">לפי ממוצע הסקרים, ללא חישוב עודפים</span>`;
+    $("kLegend").innerHTML = seats.map(s => `<a href="party.html#${s.id}" data-p="${s.id}" style="--pc:${byId[s.id].color}"><i></i>${esc(byId[s.id].short)} ${s.n}</a>`).join("") + `<span class="muted">לפי ממוצע הסקרים, ללא חישוב עודפים</span>`;
     $("families").innerHTML = E.FAMILIES.map(f => `<span class="fam"><span class="sw">${f.ids.map(id => `<i style="background:${byId[id].color}"></i>`).join("")}</span>${f.label}</span>`).join("") + `<span>הצבעים מקבצים לפי הסיווג המקובל בתקשורת, לנוחות בלבד</span>`;
   }
+
+  // הדגשת מפלגה במפת המושבים במעבר עכבר
+  (function () {
+    const fig = document.querySelector(".knesset");
+    if (!fig) return;
+    const set = id => fig.querySelectorAll("[data-p]").forEach(el => el.classList.toggle("dim", !!id && el.dataset.p !== id));
+    fig.addEventListener("mouseover", e => { const t = e.target.closest("[data-p]"); set(t && t.dataset.p); });
+    fig.addEventListener("mouseleave", () => set(null));
+  })();
 
   // ---------- seat chart ----------
   function renderChart() {
@@ -62,15 +71,16 @@
     const grid = ticks.map(t => `<span class="grid" style="inset-inline-start:${pct(t)}%"></span>`).join("") + `<span class="thr" style="inset-inline-start:${pct(3.9)}%"></span>`;
     $("seatChart").innerHTML = a.rows.map((r, i) => {
       const p = byId[r.id];
-      return `<div class="seatrow" style="--pc:${p.color};--i:${i}">
-        <a class="label" href="party.html#${p.id}">${photo(p, "sm")}<span>${esc(p.short)}</span></a>
+      return `<a class="seatrow" href="party.html#${p.id}" title="לכל הפרטים על ${esc(p.short)}" style="--pc:${p.color};--i:${i}">
+        <span class="label">${photo(p, "sm")}<span>${esc(p.short)}</span></span>
         <div class="track" aria-hidden="true">${grid}
           <span class="range" style="inset-inline-start:${pct(r.min)}%;width:${Math.max(pct(r.max - r.min), .4)}%"></span>
           <span class="bar" style="width:${Math.max(pct(r.avg), .6)}%"></span>
         </div>
         <span class="val" aria-label="${esc(p.short)}: ממוצע ${r.avg.toFixed(1)}, טווח ${r.min} עד ${r.max}">${r.avg.toFixed(1)}</span>
-      </div>`;
-    }).join("") + `<div class="axis"><span></span><div class="ticks">${ticks.map(t => `<span style="inset-inline-start:${pct(t)}%">${t}</span>`).join("")}</div><span></span></div>`;
+        <span class="go" aria-hidden="true">←</span>
+      </a>`;
+    }).join("") + `<div class="axis"><span></span><div class="ticks">${ticks.map(t => `<span style="inset-inline-start:${pct(t)}%">${t}</span>`).join("")}</div><span></span><span></span></div>`;
     drawHemicycle(a.rows);
     renderCards(a);
     renderPicks();
@@ -83,7 +93,7 @@
       const realistic = Math.min((C[p.id] || []).length, Math.max(t.max, t.likely));
       return `<article class="card rise" style="--pc:${p.color};--i:${i}">
         <div class="card-band"><div class="seats">${r.avg.toFixed(1)}<small>מנדטים בממוצע</small></div>${slip(p)}</div>
-        <div class="card-head">${photo(p)}<div><h3><a href="party.html#${p.id}">${esc(p.short)}</a></h3><div class="small muted">${esc(p.leader)}</div></div></div>
+        <div class="card-head">${photo(p)}<div><h3><a class="stretch" href="party.html#${p.id}">${esc(p.short)}</a></h3><div class="small muted">${esc(p.leader)}</div></div></div>
         <dl>
           <dt>ברשימה</dt><dd>${esc(p.list.slice(1, 4).join(", "))}</dd>
           <dt>מחנה</dt><dd>${esc(p.camp)} ${below ? '<span class="chip warn">סביב החסימה</span>' : ""}</dd>
@@ -92,7 +102,7 @@
         <p class="stance">${esc(p.coalition.summary)}</p>
         <div class="card-actions">
           <button class="btn party" type="button" data-cands="${p.id}">מועמדים במקום ריאלי (${realistic})</button>
-          <a class="btn party" href="party.html#${p.id}">לדף המפלגה ←</a>
+          <a class="btn party solid" href="party.html#${p.id}">כל הפרטים ←</a>
         </div>
       </article>`;
     }).join("");
@@ -102,7 +112,7 @@
   // ---------- comparison ----------
   (function renderCompare() {
     const head = `<thead><tr><th>מפלגה</th>${E.issues.map(i => `<th>${esc(i.label)}</th>`).join("")}<th>עם מי בממשלה</th></tr></thead>`;
-    const body = E.parties.map(p => `<tr style="--pc:${p.color}"><td><a href="party.html#${p.id}">${photo(p, "sm")}${esc(p.short)}</a></td>${E.issues.map(i => {
+    const body = E.parties.map(p => `<tr style="--pc:${p.color}"><td><a href="party.html#${p.id}">${photo(p, "sm")}<span>${esc(p.short)}<small class="more-link">לכל הפרטים ←</small></span></a></td>${E.issues.map(i => {
       const pos = p.positions[i.id];
       return pos ? `<td>${esc(pos.text)} ${srcLink(pos.src, p.id)}</td>` : `<td class="na">לא נמצאה עמדה מפורשת</td>`;
     }).join("")}<td>${esc(p.coalition.summary)}</td></tr>`).join("");
