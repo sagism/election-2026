@@ -310,3 +310,8 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 .knesset .dim { opacity: .18; }
 .k-legend a { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; color: inherit; }
 .k-legend a:hover { color: var(--ink); text-decoration: underline; }
+
+.site-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 7px 16px; border-radius: 999px; background: rgba(255,255,255,.95); color: #151a2d; font-weight: 800; font-size: .92rem; text-decoration: none; box-shadow: 0 6px 18px -8px rgba(0,0,0,.45); transition: transform .15s; }
+.site-btn span { font-weight: 600; opacity: .65; font-size: .82rem; }
+.site-btn:hover { transform: translateY(-1px); color: #151a2d; }
+.phero .credit { margin-top: 8px; }

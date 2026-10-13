@@ -1,6 +1,32 @@
 // נוצר אוטומטית מתוך polls.json — אפשר לערוך ידנית או להריץ update_polls.py
 window.POLLS = [
  {
+  "ref": "4202",
+  "date": "2026-10-12",
+  "published": "2026-10-13",
+  "pollster": "מדגם",
+  "outlet": "חדשות 12",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election106/he/Survey_4202.pdf",
+  "seats": {
+   "likud": 20,
+   "yashar": 23,
+   "together": 13,
+   "dems": 9,
+   "yb": 9,
+   "utj": 7,
+   "shas": 8,
+   "otzma": 8,
+   "rzp": 6,
+   "joint": 8,
+   "raam": 5,
+   "amcha": 0,
+   "reservists": 4,
+   "bw": null,
+   "haredi": null
+  },
+  "note": ""
+ },
+ {
   "ref": "4200",
   "date": "2026-10-11",
   "published": "2026-10-11",

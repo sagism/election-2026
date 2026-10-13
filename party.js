@@ -22,6 +22,9 @@
     $("pName").textContent = p.short;
     $("pBallot").textContent = `בפתק: ${p.ballot}`;
     $("pCredit").innerHTML = photoCredit(p.id);
+    const site = (E.sites || {})[p.id], sb = $("pSite");
+    sb.hidden = !site;
+    if (site) { sb.href = site; sb.innerHTML = `לאתר המפלגה <span dir="ltr">${esc(site.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, ""))}</span> ↗`; }
     $("pBlurb").textContent = p.blurb;
 
     const a = pollAverage(14, true);

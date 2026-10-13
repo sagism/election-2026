@@ -401,3 +401,18 @@ window.ELECTION = {
   },
   polimeterSlug: { likud: "likud", yashar: "yashar", together: "beyahad", dems: "hademokratim", yb: "yisrael-beiteinu", utj: "yahadut-hatorah", shas: "shas", otzma: "otzma-yehudit", rzp: "religious-zionism", joint: "hadash-taal", raam: "raam", amcha: "amcha-israel", reservists: "bayit-tzioni", bw: "blue-white" }
 };
+
+// אתרי הבית הרשמיים של המפלגות (נבדקו 13.10.2026). למפלגות בלי אתר פעיל שמצאנו אין קישור.
+window.ELECTION.sites = {
+  likud: "https://www.likud.org.il/",
+  yashar: "https://yasharwitheisenkot.com/",
+  together: "https://be-yahad.org.il/",
+  dems: "https://www.democrats.org.il/",
+  yb: "https://beytenu.org.il/",
+  otzma: "https://www.ozma-yeudit.co.il/",
+  rzp: "https://zionutdatit.org.il/",
+  joint: "https://jointlist.org.il/he/",
+  amcha: "https://amchaisrael.co.il/",
+  reservists: "https://www.themiluimnikim.org.il/",
+  bw: "https://www.kachollavan.org.il/"
+};
