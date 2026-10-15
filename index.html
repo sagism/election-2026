@@ -38,7 +38,8 @@
   </div>
 
   <nav class="toc" aria-label="ניווט בדף">
-    <a href="#polls-avg">סקרים</a>
+    <a href="#news">סקרים חדשים</a>
+    <a href="#polls-avg">ממוצע</a>
     <a href="#parties">מפלגות ומועמדים</a>
     <a href="#compare">השוואת עמדות</a>
     <a href="#coalition">מחשבון קואליציה</a>
@@ -46,6 +47,11 @@
     <a href="#polls">כל הסקרים</a>
     <a href="#about">מקורות</a>
   </nav>
+
+  <section id="news" aria-labelledby="news-h">
+    <header><div><h2 id="news-h">סקרים חדשים</h2><p class="muted small">הסקרים האחרונים שדווחו לוועדת הבחירות, ומה השתנה בממוצע.</p></div></header>
+    <div id="newsBody"></div>
+  </section>
 
   <section aria-labelledby="facts-h">
     <header><h2 id="facts-h">מה חשוב לדעת עכשיו</h2></header>
@@ -167,5 +173,6 @@
 <script src="candidates.js"></script>
 <script src="common.js"></script>
 <script src="index.js"></script>
+<script src="news.js"></script>
 </body>
 </html>
