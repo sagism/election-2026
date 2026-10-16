@@ -56,6 +56,7 @@
     $("pList").innerHTML = candidateListHtml(p.id);
     $("pListPdf").href = p.listPdf;
 
+    $("pHouse").href = `house.html#${p.id}`;
     drawTrend(p);
     const rows = [...P].sort((x, y) => y.date.localeCompare(x.date)).slice(0, 15);
     $("pPolls").innerHTML = `<thead><tr><th>תאריך</th><th>סוקר</th><th>גוף מפרסם</th><th class="n">מנדטים</th><th>קובץ</th></tr></thead><tbody>${rows.map(x => {

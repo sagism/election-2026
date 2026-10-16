@@ -1,5 +1,57 @@
 [
  {
+  "ref": "4212",
+  "date": "2026-10-14",
+  "published": "2026-10-16",
+  "pollster": "נקסט דאטה",
+  "outlet": "ערוץ 14",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election111/he/Survey_4212.pdf",
+  "seats": {
+   "likud": 29,
+   "yashar": 20,
+   "together": 11,
+   "dems": 8,
+   "yb": 5,
+   "utj": 8,
+   "shas": 10,
+   "otzma": 8,
+   "rzp": 7,
+   "joint": 9,
+   "raam": 5,
+   "amcha": 0,
+   "reservists": 0,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
+ },
+ {
+  "ref": "4211",
+  "date": "2026-10-13",
+  "published": "2026-10-16",
+  "pollster": "דיירקט פולס",
+  "outlet": "i24NEWS",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election110/he/Survey_4211.pdf",
+  "seats": {
+   "likud": 27,
+   "yashar": 21,
+   "together": 13,
+   "dems": 9,
+   "yb": 7,
+   "utj": 8,
+   "shas": 7,
+   "otzma": 9,
+   "rzp": 6,
+   "joint": 7,
+   "raam": 6,
+   "amcha": 0,
+   "reservists": 0,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
+ },
+ {
   "ref": "4210",
   "date": "2026-10-13",
   "published": "2026-10-15",
