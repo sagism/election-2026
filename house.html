@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>לפי סוקר · מדריך בחירות 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Secular+One&family=Frank+Ruhl+Libre:wght@900&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html#news"><span class="brand-mark">26</span>← חזרה למדריך</a>
+    <button class="btn" id="themeBtn" type="button">◐ אוטומטי</button>
+  </div>
+  <nav class="pnav" id="pnav" aria-label="בחירת מפלגה"></nav>
+
+  <main>
+    <header class="hhead rise">
+      <div class="eyebrow">סקרים לפי גוף מפרסם</div>
+      <h1>איך כל סוקר רואה את <span id="hName"></span></h1>
+      <p class="muted" style="max-width:70ch">כל קו הוא גוף מפרסם אחד, וכל נקודה היא סקר שדווח לוועדת הבחירות. הקו האפור המקווקו הוא הממוצע של כל הסוקרים (14 יום, הסקר האחרון של כל סוקר). אפשר לבחור מפלגה אחרת בשורת התמונות, ולהסתיר או להבליט קו בלחיצה על המקרא.</p>
+      <a class="btn" id="hBack" href="party.html"></a>
+    </header>
+
+    <section aria-labelledby="hc-h">
+      <header><h2 id="hc-h">מנדטים לאורך זמן</h2></header>
+      <div class="hlegend" id="hLegend"></div>
+      <div class="hchart panel" id="hChart"></div>
+    </section>
+
+    <section aria-labelledby="ht-h">
+      <header><div><h2 id="ht-h">מי נדיב ומי קמצן</h2><p class="small muted">לכל סקר חישבנו את ההפרש מהממוצע של שאר הסוקרים באותו זמן, ואז ממוצע של ההפרשים לכל גוף מפרסם. זו "נטיית הבית" של הסוקר, לא שגיאה: אי אפשר לדעת מראש מי צודק.</p></div></header>
+      <p id="hSummary" style="max-width:70ch;font-weight:600"></p>
+      <div class="tablewrap panel"><table id="hTable"></table></div>
+    </section>
+  </main>
+
+  <footer class="foot panel">
+    <p>הנתונים מתוך הסקרים שדווחו לוועדת הבחירות המרכזית, עם קישור לכל קובץ בטבלת הסקרים בדף הראשי. סקר בודד כפוף לטעות דגימה של כמה מנדטים. צבעי הקווים לזיהוי הגוף המפרסם בלבד.</p>
+  </footer>
+  <div class="colophon">
+    <span>© 2026 שגיא סמולרסקי. כל הזכויות שמורות.</span>
+    <span>יצירת קשר: <a href="mailto:sagism@gmail.com" dir="ltr">sagism@gmail.com</a></span>
+    <span>קוד המקור: <a href="https://github.com/sagism/election-2026" target="_blank" rel="noopener" dir="ltr">github.com/sagism/election-2026</a></span>
+  </div>
+</div>
+<script src="data.js"></script>
+<script src="polls.js"></script>
+<script src="candidates.js"></script>
+<script src="common.js"></script>
+<script src="house.js"></script>
+</body>
+</html>
