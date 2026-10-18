@@ -1,5 +1,31 @@
 [
  {
+  "ref": "4216",
+  "date": "2026-10-14",
+  "published": "2026-10-18",
+  "pollster": "מנחם לזר",
+  "outlet": "מעריב",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election113/he/Survey_4216.pdf",
+  "seats": {
+   "likud": 18,
+   "yashar": 21,
+   "together": 13,
+   "dems": 9,
+   "yb": 8,
+   "utj": 8,
+   "shas": 7,
+   "otzma": 8,
+   "rzp": 6,
+   "joint": 8,
+   "raam": 6,
+   "amcha": 4,
+   "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
+ },
+ {
   "ref": "4212",
   "date": "2026-10-14",
   "published": "2026-10-16",
@@ -72,6 +98,32 @@
    "raam": 6,
    "amcha": 4,
    "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
+ },
+ {
+  "ref": "4215",
+  "date": "2026-10-12",
+  "published": "2026-10-18",
+  "pollster": "מאגר מוחות",
+  "outlet": "ערוץ 16",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election112/he/Survey_4215.pdf",
+  "seats": {
+   "likud": 18,
+   "yashar": 21,
+   "together": 13,
+   "dems": 9,
+   "yb": 7,
+   "utj": 8,
+   "shas": 7,
+   "otzma": 9,
+   "rzp": 6,
+   "joint": 8,
+   "raam": 5,
+   "amcha": 4,
+   "reservists": 5,
    "bw": 0,
    "haredi": 0
   },

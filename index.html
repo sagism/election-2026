@@ -39,6 +39,7 @@
 
   <nav class="toc" aria-label="ניווט בדף">
     <a href="#news">סקרים חדשים</a>
+    <a href="#market">שוק התחזיות</a>
     <a href="#polls-avg">ממוצע</a>
     <a href="house.html">לפי סוקר</a>
     <a href="#parties">מפלגות ומועמדים</a>
@@ -52,6 +53,21 @@
   <section id="news" aria-labelledby="news-h">
     <header><div><h2 id="news-h">סקרים חדשים</h2><p class="muted small">הסקרים האחרונים שדווחו לוועדת הבחירות, ומה השתנה בממוצע.</p></div><a class="btn" href="house.html">הליכוד לפי סוקר ←</a></header>
     <div id="newsBody"></div>
+  </section>
+
+  <section id="market" aria-labelledby="market-h">
+    <header><div><h2 id="market-h">שוק התחזיות: מי יהיה ראש הממשלה?</h2><p class="muted small" style="max-width:70ch">ב-Polymarket משתתפים קונים ומוכרים חוזים על השאלה מי יושבע לראש הממשלה אחרי הבחירות, והמחיר מתורגם להסתברות. זה מקור שונה מהסקרים: הוא מודד על מה אנשים מוכנים לשים כסף, לא בעד מי הם מצביעים.</p></div></header>
+    <div id="marketBody"></div>
+    <details class="mk-notes panel">
+      <summary>מה כדאי לדעת על הנתונים האלה</summary>
+      <ul class="small">
+        <li>זה לא סקר. המחיר נקבע לפי כסף שמשתתפים מוכנים להמר, לא לפי מדגם מייצג. רוב המשתתפים לא בישראל, והשוק יכול לטעות או להגיב בחדות לחדשות.</li>
+        <li>השאלה היא מי יושבע לראש הממשלה בפועל, לא מי תהיה המפלגה הגדולה. ההסתברות כוללת גם את סיכויי הרכבת הקואליציה.</li>
+        <li>סכום ההסתברויות של כל המועמדים לא תמיד יוצא בדיוק 100%.</li>
+        <li>הנתונים נטענים ישירות מ-Polymarket כשנכנסים לדף. אם האתר לא זמין, מוצגת תמונת המצב האחרונה שנשמרה.</li>
+        <li>האתר לא ממליץ להמר ולא קשור ל-Polymarket.</li>
+      </ul>
+    </details>
   </section>
 
   <section aria-labelledby="facts-h">
@@ -175,5 +191,7 @@
 <script src="common.js"></script>
 <script src="index.js"></script>
 <script src="news.js"></script>
+<script src="polymarket.js"></script>
+<script src="market.js"></script>
 </body>
 </html>
