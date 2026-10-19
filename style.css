@@ -72,7 +72,7 @@ h3 { font-size: 1.2rem; }
 /* ---------- top bar ---------- */
 .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-block: 14px; }
 .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.1rem; text-decoration: none; }
-.brand-mark { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: 1rem; }
+.brand-mark { display: inline-grid; place-items: center; height: 34px; padding-inline: 12px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: .9rem; white-space: nowrap; }
 .btn { font: inherit; font-size: .9rem; font-weight: 600; background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: transform .15s, border-color .15s, background .15s; }
 .btn:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
 .btn[aria-pressed="true"], .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
