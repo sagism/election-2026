@@ -15,6 +15,8 @@
     { label: "מפלגות ערביות", hue: "ירוק", ids: ["joint", "raam"] }
   ];
   E.parties.forEach(p => { p.color = COLORS[p.id] || "#666"; });
+  // רשימות שפרשו לא נכנסות לממוצעים, לטבלאות הסקרים ולמפת המושבים
+  E.active = E.parties.filter(p => !p.withdrawn);
 
   function esc(s) {
     return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -53,7 +55,7 @@
       const seen = new Set();
       inWin = inWin.filter(p => (seen.has(p.pollster) ? false : (seen.add(p.pollster), true)));
     }
-    const rows = E.parties.map(party => {
+    const rows = E.active.map(party => {
       const vals = inWin.map(p => p.seats[party.id]).filter(v => v !== null && v !== undefined);
       const avg = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
       return { id: party.id, avg, min: vals.length ? Math.min(...vals) : 0, max: vals.length ? Math.max(...vals) : 0, n: vals.length };

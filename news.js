@@ -1,13 +1,13 @@
 // "סקרים חדשים": הסקרים האחרונים ומה השתנה. הכל מחושב מ-polls.js, בלי טקסט ידני.
 (function () {
-  const { E, P, byId, esc, fmtDate, daysBetween, photo } = window.EG;
+  const { E, P, byId, esc, fmtDate, daysBetween, photo, srcLink, todayIso } = window.EG;
   const box = document.getElementById("newsBody");
   if (!box || !P.length) return;
 
   const iso = d => d.toISOString().slice(0, 10);
   const shift = (s, n) => { const d = new Date(s + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
   const byDate = (a, b) => b.date.localeCompare(a.date) || b.ref.localeCompare(a.ref);
-  const ids = E.parties.map(p => p.id);
+  const ids = E.active.map(p => p.id);
   const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + Math.abs(v).toFixed(1);
   const fmtInt = v => (v > 0 ? "+" : "−") + Math.abs(v);
 
@@ -30,7 +30,8 @@
   const rank = a => ids.slice().sort((x, y) => a[y] - a[x]);
   const [n1, n2] = rank(now.avg), [b1] = rank(before.avg);
   if (n1 !== b1) findings.push(`<b>${esc(byId[n1].short)}</b> עקפה את <b>${esc(byId[b1].short)}</b> והיא עכשיו הגדולה בממוצע.`);
-  findings.push(`הפער בין <b>${esc(byId[n1].short)}</b> ל<b>${esc(byId[n2].short)}</b>: ${(now.avg[n1] - now.avg[n2]).toFixed(1)} מנדטים (לפני שבוע: ${(before.avg[n1] - before.avg[n2]).toFixed(1)}).`);
+  const gapBefore = before.avg[n1] - before.avg[n2];
+  findings.push(`הפער בין <b>${esc(byId[n1].short)}</b> ל<b>${esc(byId[n2].short)}</b>: ${(now.avg[n1] - now.avg[n2]).toFixed(1)} מנדטים (${gapBefore >= 0 ? `לפני שבוע: ${gapBefore.toFixed(1)}` : `לפני שבוע היתרון היה ל${esc(byId[n2].short)}, ב-${(-gapBefore).toFixed(1)}`}).`);
 
   const movers = ids.map(id => ({ id, d: now.avg[id] - before.avg[id] })).filter(m => Math.abs(m.d) >= 0.5).sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).slice(0, 5);
 
@@ -46,12 +47,14 @@
   });
 
   // ---- כרטיסי הסקרים האחרונים ----
-  const list = [...P].sort((a, b) => (b.published || b.date).localeCompare(a.published || a.date) || byDate(a, b)).slice(0, 5);
+  // לפי מועד עריכת הסקר, לא לפי מועד הדיווח לוועדה (יש סוקרים שמדווחים באיחור, כמה סקרים בבת אחת)
+  const list = [...P].sort(byDate).slice(0, 5);
   function prevSamePollster(p) {
     return [...P].filter(q => q.pollster === p.pollster && q.ref !== p.ref && (q.date < p.date || (q.date === p.date && q.ref < p.ref))).sort(byDate)[0];
   }
   const cards = list.map((p, i) => {
-    const isNew = daysBetween(p.published || p.date, lastPub) <= 2;
+    const isNew = daysBetween(p.published || p.date, lastPub) <= 2 && daysBetween(p.date, latest) <= 7;
+    const late = p.published && daysBetween(p.date, p.published) > 4 ? ` · דווח ב-${fmtDate(p.published)}` : "";
     const top = ids.filter(id => p.seats[id]).sort((a, b) => p.seats[b] - p.seats[a]).slice(0, 4)
       .map(id => `<span class="np-seat" title="${esc(byId[id].short)}" style="--pc:${byId[id].color}">${photo(byId[id], "sm")}<b>${p.seats[id]}</b></span>`).join("");
     const prev = prevSamePollster(p);
@@ -65,15 +68,21 @@
       changes = `<div class="np-changes"><span class="small muted">לעומת הסקר הקודם שלו (${fmtDate(prev.date)}):</span> ${changes}</div>`;
     }
     return `<article class="np-card panel rise" style="--i:${i}">
-      <div class="np-head">${isNew ? '<span class="np-new">חדש</span>' : ""}<b>${esc(p.pollster)}</b><span class="muted small">${esc(p.outlet)} · ${fmtDate(p.date, true)}</span>
+      <div class="np-head">${isNew ? '<span class="np-new">חדש</span>' : ""}<b>${esc(p.pollster)}</b><span class="muted small">${esc(p.outlet)} · ${fmtDate(p.date, true)}${late}</span>
         <a class="small np-pdf" href="${esc(p.url)}" target="_blank" rel="noopener">PDF ↗</a></div>
       <div class="np-seats">${top}</div>${changes}</article>`;
   }).join("");
 
+  // אירועים מהשבוע האחרון (מ-data.js), לפני ממצאי הסקרים
+  const today = todayIso();
+  const events = (E.events || []).filter(e => { const d = daysBetween(e.date, today); return d >= 0 && d <= 7; })
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map(e => { const p = byId[e.party]; return `<div class="np-event" style="--pc:${p ? p.color : "var(--accent)"}">${p ? `<a href="party.html#${p.id}">${photo(p, "sm")}</a>` : ""}<div><span class="np-ev-date">${fmtDate(e.date)}</span><b>${esc(e.title)}</b><p>${esc(e.text)} ${srcLink(e.src)}</p></div></div>`; }).join("");
   box.innerHTML = `
     <div class="np-grid">
       <div class="np-findings panel">
         <h3>מה השתנה השבוע</h3>
+        ${events}
         <p class="small muted">ממוצע 14 הימים עד ${fmtDate(latest, true)}, לעומת הממוצע עד ${fmtDate(shift(latest, -7), true)}</p>
         ${movers.length ? `<div class="movers">${movers.map(m => `<a class="mover ${m.d > 0 ? "up" : "down"}" href="party.html#${m.id}" style="--pc:${byId[m.id].color}">${photo(byId[m.id], "sm")}<span>${esc(byId[m.id].short)}</span><b dir="ltr">${fmt(m.d)}</b><small>${now.avg[m.id].toFixed(1)}</small></a>`).join("")}</div>` : '<p class="small">אין שינויים של חצי מנדט ומעלה בממוצע.</p>'}
         <ul class="np-list">${findings.map(f => `<li>${f}</li>`).join("")}</ul>

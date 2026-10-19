@@ -26,6 +26,8 @@
     sb.hidden = !site;
     if (site) { sb.href = site; sb.innerHTML = `לאתר המפלגה <span dir="ltr">${esc(site.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, ""))}</span> ↗`; }
     $("pBlurb").textContent = p.blurb;
+    const ob = $("pOut"); ob.hidden = !p.withdrawn;
+    if (p.withdrawn) ob.innerHTML = `<b>הרשימה פרשה מהמרוץ ב-${fmtDate(p.withdrawn.date, true)}.</b> הנתונים בדף נשארים לתיעוד. ${srcLink(p.withdrawn.src)}`;
 
     const a = pollAverage(14, true);
     const r = a.rows.find(x => x.id === p.id) || { avg: 0, min: 0, max: 0 };
@@ -35,7 +37,7 @@
       k("בראש הרשימה", esc(p.leader), "txt", 1),
       k("ממוצע סקרים (14 יום)", r.avg.toFixed(1), "", 2),
       k("טווח בסקרים", `<span dir="ltr">${r.min}–${r.max}</span>`, "", 3),
-      k("מקום בממוצע", rank, "", 4),
+      k("מקום בממוצע", rank || "—", "", 4),
       k("בכנסת ה-25", p.seats25 ?? "—", "", 5)
     ].join("");
 

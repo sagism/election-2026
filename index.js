@@ -48,7 +48,7 @@
       <text class="mid" x="${cx}" y="${cy - 26}" text-anchor="middle" font-size="40">120</text>
       <text class="mid-sub" x="${cx}" y="${cy - 4}" text-anchor="middle">מושבים · 61 לרוב</text></svg>`;
     $("kLegend").innerHTML = seats.map(s => `<a href="party.html#${s.id}" data-p="${s.id}" style="--pc:${byId[s.id].color}"><i></i>${esc(byId[s.id].short)} ${s.n}</a>`).join("") + `<span class="muted">לפי ממוצע הסקרים, ללא חישוב עודפים</span>`;
-    $("families").innerHTML = E.FAMILIES.map(f => `<span class="fam"><span class="sw">${f.ids.map(id => `<i style="background:${byId[id].color}"></i>`).join("")}</span>${f.label}</span>`).join("") + `<span>הצבעים מקבצים לפי הסיווג המקובל בתקשורת, לנוחות בלבד</span>`;
+    $("families").innerHTML = E.FAMILIES.map(f => `<span class="fam"><span class="sw">${f.ids.filter(id => !byId[id].withdrawn).map(id => `<i style="background:${byId[id].color}"></i>`).join("")}</span>${f.label}</span>`).join("") + `<span>הצבעים מקבצים לפי הסיווג המקובל בתקשורת, לנוחות בלבד</span>`;
   }
 
   // הדגשת מפלגה במפת המושבים במעבר עכבר
@@ -87,21 +87,23 @@
   }
 
   function renderCards(a) {
-    $("cards").innerHTML = a.rows.map((r, i) => {
+    const gone = E.parties.filter(p => p.withdrawn).map(p => ({ id: p.id, avg: 0 }));
+    $("cards").innerHTML = [...a.rows, ...gone].map((r, i) => {
       const p = byId[r.id], sp = surplusPartner(p.id), t = candidateTiers(p.id);
       const below = r.avg < 3.5;
       const realistic = Math.min((C[p.id] || []).length, Math.max(t.max, t.likely));
-      return `<article class="card rise" style="--pc:${p.color};--i:${i}">
-        <div class="card-band"><div class="seats">${r.avg.toFixed(1)}<small>מנדטים בממוצע</small></div>${slip(p)}</div>
+      const out = p.withdrawn;
+      return `<article class="card rise${out ? " out" : ""}" style="--pc:${p.color};--i:${i}">
+        <div class="card-band">${out ? `<div class="seats out-stamp">פרש<small>מהמרוץ ב-${fmtDate(out.date)}</small></div>` : `<div class="seats">${r.avg.toFixed(1)}<small>מנדטים בממוצע</small></div>`}${slip(p)}</div>
         <div class="card-head">${photo(p)}<div><h3><a class="stretch" href="party.html#${p.id}">${esc(p.short)}</a></h3><div class="small muted">${esc(p.leader)}</div></div></div>
         <dl>
           <dt>ברשימה</dt><dd>${esc(p.list.slice(1, 4).join(", "))}</dd>
-          <dt>מחנה</dt><dd>${esc(p.camp)} ${below ? '<span class="chip warn">סביב החסימה</span>' : ""}</dd>
+          <dt>מחנה</dt><dd>${esc(p.camp)} ${out ? "" : below ? '<span class="chip warn">סביב החסימה</span>' : ""}</dd>
           <dt>עודפים</dt><dd>${sp ? `<span class="chip" style="--pc:${sp.partner.color}">עם ${esc(sp.partner.short)}</span>` : '<span class="muted">לא נחתם</span>'}</dd>
         </dl>
         <p class="stance">${esc(p.coalition.summary)}</p>
         <div class="card-actions">
-          <button class="btn party" type="button" data-cands="${p.id}">מועמדים במקום ריאלי (${realistic})</button>
+          ${out ? "" : `<button class="btn party" type="button" data-cands="${p.id}">מועמדים במקום ריאלי (${realistic})</button>`}
           <a class="btn party solid" href="party.html#${p.id}">כל הפרטים ←</a>
         </div>
       </article>`;
@@ -155,7 +157,7 @@
   $("surplusDeadline").textContent = fmtDate(E.surplusDeadline, true);
   const who = p => `<a class="who" href="party.html#${p.id}" style="--pc:${p.color}">${photo(p, "sm")}${esc(p.short)}</a>`;
   $("surplusList").innerHTML = E.surplus.map((s, i) => `<div class="pair panel rise" style="--i:${i}">${who(byId[s.a])}<span class="plus">+</span>${who(byId[s.b])}<div class="meta"><span class="small muted num">נחתם ${fmtDate(s.date, true)}</span>${srcLink(s.src)}</div></div>`).join("");
-  const none = E.parties.filter(p => !surplusPartner(p.id)).map(p => p.short);
+  const none = E.active.filter(p => !surplusPartner(p.id)).map(p => p.short);
   $("noSurplus").textContent = `עדיין בלי הסכם עודפים (לפי המידע שבידינו): ${none.join(", ")}.`;
 
   // ---------- polls table ----------
@@ -164,8 +166,8 @@
   function renderPolls() {
     const f = $("pollsterFilter").value;
     const rows = [...P].sort((a, b) => b.date.localeCompare(a.date) || b.ref.localeCompare(a.ref)).filter(p => !f || p.pollster === f);
-    const head = `<thead><tr><th>תאריך</th><th>סוקר</th><th>גוף מפרסם</th>${E.parties.map(p => `<th class="n rot" style="--pc:${p.color}">${esc(p.short)}</th>`).join("")}<th>קובץ</th></tr></thead>`;
-    const body = rows.map(p => `<tr><td class="num">${fmtDate(p.date, true)}</td><td>${esc(p.pollster)}</td><td>${esc(p.outlet)}</td>${E.parties.map(x => {
+    const head = `<thead><tr><th>תאריך</th><th>סוקר</th><th>גוף מפרסם</th>${E.active.map(p => `<th class="n rot" style="--pc:${p.color}">${esc(p.short)}</th>`).join("")}<th>קובץ</th></tr></thead>`;
+    const body = rows.map(p => `<tr><td class="num">${fmtDate(p.date, true)}</td><td>${esc(p.pollster)}</td><td>${esc(p.outlet)}</td>${E.active.map(x => {
       const v = p.seats[x.id];
       return v === null || v === undefined ? `<td class="n zero">—</td>` : `<td class="n ${v === 0 ? "zero" : ""}">${v}</td>`;
     }).join("")}<td><a href="${esc(p.url)}" target="_blank" rel="noopener" title="${esc(p.note || "")}">PDF</a></td></tr>`).join("");

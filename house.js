@@ -6,7 +6,7 @@
 
   // צבע קבוע לכל גוף מפרסם (לא לפי דירוג), כדי שהצבע לא יקפוץ כשנוספים סקרים.
   // גוף שלא ברשימה מוצג באפור תחת "אחרים".
-  const SLOTS = ["ערוץ 14", "חדשות 12", "חדשות 13", "כאן 11", "i24NEWS", "מעריב", "ערוץ 16", "וואלה"];
+  const SLOTS = ["ערוץ 14", "חדשות 12", "חדשות 13", "כאן 11", "i24NEWS", "מעריב", "ערוץ 16", "זמן ישראל"];
   const slotOf = o => SLOTS.indexOf(o);
   const colorOf = o => slotOf(o) >= 0 ? `var(--s${slotOf(o) + 1})` : "var(--s-other)";
   const keyOf = o => slotOf(o) >= 0 ? o : "אחרים";
@@ -32,7 +32,7 @@
     const p = byId[id];
     document.title = `${p.short} לפי סוקר · מדריך בחירות 2026`;
     document.documentElement.style.setProperty("--pc", p.color);
-    $("pnav").innerHTML = E.parties.map(x => `<a href="#${x.id}" title="${esc(x.short)}" style="--pc:${x.color}" ${x.id === id ? 'aria-current="page"' : ""}>${photo(x, "sm")}</a>`).join("");
+    $("pnav").innerHTML = E.active.map(x => `<a href="#${x.id}" title="${esc(x.short)}" style="--pc:${x.color}" ${x.id === id ? 'aria-current="page"' : ""}>${photo(x, "sm")}</a>`).join("");
     $("hName").textContent = p.short;
     $("hBack").href = `party.html#${id}`;
     $("hBack").textContent = `לדף של ${p.short} ←`;
