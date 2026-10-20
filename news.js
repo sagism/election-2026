@@ -77,7 +77,7 @@
   const today = todayIso();
   const events = (E.events || []).filter(e => { const d = daysBetween(e.date, today); return d >= 0 && d <= 7; })
     .sort((a, b) => b.date.localeCompare(a.date))
-    .map(e => { const p = byId[e.party]; return `<div class="np-event" style="--pc:${p ? p.color : "var(--accent)"}">${p ? `<a href="party.html#${p.id}">${photo(p, "sm")}</a>` : ""}<div><span class="np-ev-date">${fmtDate(e.date)}</span><b>${esc(e.title)}</b><p>${esc(e.text)} ${srcLink(e.src)}</p></div></div>`; }).join("");
+    .map(e => { const p = byId[e.party]; return `<div class="np-event${p && p.withdrawn ? " out" : ""}" style="--pc:${p ? p.color : "var(--accent)"}">${p ? `<a href="party.html#${p.id}">${photo(p, "sm")}</a>` : ""}<div><span class="np-ev-date">${fmtDate(e.date)}</span><b>${esc(e.title)}</b><p>${esc(e.text)} ${srcLink(e.src)}</p></div></div>`; }).join("");
   box.innerHTML = `
     <div class="np-grid">
       <div class="np-findings panel">

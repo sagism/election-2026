@@ -7,7 +7,10 @@ window.ELECTION = {
   events: [
     { date: "2026-10-19", party: "bw", title: "גנץ פרש מהמרוץ",
       text: "בני גנץ הודיע שכחול לבן לא תתמודד בבחירות. הוא לא המליץ על מועמד לראשות הממשלה. בסקרים האחרונים הרשימה קיבלה בין 0.8% ל-1.6% מהקולות, מתחת לאחוז החסימה. מי שתכנן להצביע לה יצטרך לבחור רשימה אחרת.",
-      src: { name: "ynet", url: "https://www.ynet.co.il/news/elections2026/article/syy00ec73zl" } }
+      src: { name: "ynet", url: "https://www.ynet.co.il/news/elections2026/article/syy00ec73zl" } },
+    { date: "2026-10-18", party: "likud", title: "טראמפ הודיע על תמיכה בנתניהו",
+      text: "נשיא ארה\"ב דונלד טראמפ פרסם הודעה שבה הביע תמיכה בנתניהו לקראת הבחירות. לפי mako, שבוע קודם לכן, כשנשאל אם יתמוך בנתניהו, נמנע מלהתחייב.",
+      src: { name: "mako", url: "https://www.mako.co.il/news-world/2026_q4/Article-444e74f607f41a1027.htm" } }
   ],
   threshold: 3.25,
   surplusDeadline: "2026-10-16",

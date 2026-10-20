@@ -437,7 +437,8 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 
 /* events in "what changed this week" */
 .np-event { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; margin-block: 10px 6px; padding: 12px 14px; border-radius: 14px; background: color-mix(in srgb, var(--warn) 12%, var(--surface)); border-inline-start: 4px solid var(--warn); }
-.np-event .avatar.sm { width: 40px; height: 40px; filter: grayscale(1); }
+.np-event .avatar.sm { width: 40px; height: 40px; }
+.np-event.out .avatar.sm { filter: grayscale(1); }
 .np-event b { font-size: 1.02rem; }
 .np-event p { margin: 2px 0 0; font-size: .9rem; }
 .np-ev-date { display: inline-block; font-size: .72rem; font-weight: 800; color: var(--ink-2); margin-inline-end: 8px; }
