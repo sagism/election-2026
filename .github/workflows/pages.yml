@@ -29,6 +29,7 @@ jobs:
           cp *.html style.css *.js _site/
           mkdir -p _site/img && cp img/*.webp _site/img/
           touch _site/.nojekyll
+          echo "window.BUILD = { time: \"$(git log -1 --format=%cI)\" };" > _site/build.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

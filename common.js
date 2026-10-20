@@ -161,5 +161,39 @@
     els.forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre-reveal"); io.observe(el); } });
   }
 
+
+  // מתי האתר עודכן: זמן ה-commit האחרון (נכתב ל-build.js בזמן הפרסום ל-GitHub Pages).
+  // בלי build.js (צפייה מקומית): התאריך האחרון שמופיע בנתונים.
+  (function updatedStamp() {
+    // בדף הראשי: תגית בולטת בכותרת (#heroStamp). בשאר הדפים: ליד שם האתר.
+    const hero = document.getElementById("heroStamp");
+    const brand = document.querySelector(".topbar .brand");
+    if (!hero && !brand) return;
+    const tz = "Asia/Jerusalem";
+    const b = window.BUILD && window.BUILD.time ? new Date(window.BUILD.time) : null;
+    const lastPoll = P.map(p => p.published || p.date).sort().pop();
+    const info = `סקר אחרון דווח ב-${fmtDate(lastPoll, true)} · מידע על מפלגות עודכן ב-${fmtDate(E.updated, true)}`;
+    let txt, ageH;
+    if (b && !isNaN(b)) {
+      const d = b.toLocaleDateString("he-IL", { day: "numeric", month: "numeric", year: "numeric", timeZone: tz });
+      const t = b.toLocaleTimeString("he-IL", { hour: "2-digit", minute: "2-digit", timeZone: tz });
+      ageH = (Date.now() - b) / 3.6e6;
+      const ago = ageH < 1 ? (Math.round(ageH * 60) <= 1 ? "לפני דקה" : `לפני ${Math.round(ageH * 60)} דקות`)
+        : ageH < 24 ? (Math.round(ageH) === 1 ? "לפני שעה" : Math.round(ageH) === 2 ? "לפני שעתיים" : `לפני ${Math.round(ageH)} שעות`)
+        : (Math.round(ageH / 24) === 1 ? "לפני יום" : Math.round(ageH / 24) === 2 ? "לפני יומיים" : `לפני ${Math.round(ageH / 24)} ימים`);
+      const dayKey = x => x.toLocaleDateString("en-CA", { timeZone: tz });
+      const yest = new Date(Date.now() - 864e5);
+      const when = dayKey(b) === dayKey(new Date()) ? "היום" : dayKey(b) === dayKey(yest) ? "אתמול" : `ב-${d}`;
+      txt = `עודכן ${when} בשעה ${t} <span class="ago">(${ago})</span>`;
+    } else {
+      const last = [E.updated, lastPoll].sort().pop();
+      ageH = daysBetween(last, todayIso()) * 24;
+      txt = `עודכן ב-${fmtDate(last, true)}`;
+    }
+    const cls = ageH > 72 ? " stale" : "";
+    if (hero) { hero.className += cls; hero.title = info; hero.innerHTML = `<i class="dot"></i><span>${txt}</span>`; }
+    else brand.insertAdjacentHTML("beforeend", `<span class="stamp${cls}" title="${esc(info)}">${txt}</span>`);
+  })();
+
   window.EG = { E, P, C, byId, esc, srcOf, srcLink, fmtDate, daysBetween, todayIso, pollAverage, allTimeMax, surplusPartner, slip, photo, photoCredit, openCandidates, candidateListHtml, candidateTiers, initTheme, initReveal };
 })();

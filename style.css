@@ -441,3 +441,20 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 .np-event b { font-size: 1.02rem; }
 .np-event p { margin: 2px 0 0; font-size: .9rem; }
 .np-ev-date { display: inline-block; font-size: .72rem; font-weight: 800; color: var(--ink-2); margin-inline-end: 8px; }
+
+/* last-updated stamp next to the title */
+.brand .stamp { font-family: var(--body); font-size: .8rem; font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+.brand .stamp .ago { font-weight: 400; }
+.brand .stamp.stale { color: var(--warn); }
+@media (max-width: 560px) { .brand { flex-wrap: wrap; row-gap: 4px; } .brand .stamp { flex-basis: 100%; } }
+
+/* last-updated pill in the main title */
+.hero-stamp { display: inline-flex; align-items: center; gap: 10px; margin-block: 10px 4px; padding: 8px 16px; border-radius: 999px; background: color-mix(in srgb, var(--good) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--good) 45%, transparent); font-size: 1.05rem; font-weight: 800; color: var(--ink); }
+.hero-stamp:empty { display: none; }
+.hero-stamp .ago { font-weight: 500; color: var(--ink-2); }
+.hero-stamp .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 60%, transparent); animation: stamp-pulse 2s ease-out infinite; flex: none; }
+.hero-stamp.stale { background: color-mix(in srgb, var(--warn) 16%, var(--surface)); border-color: color-mix(in srgb, var(--warn) 55%, transparent); }
+.hero-stamp.stale .dot { background: var(--warn); animation: none; }
+@keyframes stamp-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
+@media (prefers-reduced-motion: reduce) { .hero-stamp .dot { animation: none; } }
+@media (max-width: 560px) { .hero-stamp { font-size: .92rem; padding: 6px 12px; } .hero-stamp .ago { display: none; } }
