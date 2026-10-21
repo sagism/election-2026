@@ -459,3 +459,6 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 @keyframes stamp-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
 @media (prefers-reduced-motion: reduce) { .hero-stamp .dot { animation: none; } }
 @media (max-width: 560px) { .hero-stamp { font-size: .92rem; padding: 6px 12px; } .hero-stamp .ago { display: none; } }
+
+/* poll taken from the media, not yet in the elections committee list */
+.pend { display: inline-block; font-size: .7rem; font-weight: 800; padding: 1px 8px; border-radius: 999px; white-space: nowrap; color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, var(--surface)); border: 1px dashed color-mix(in srgb, var(--warn) 60%, transparent); align-self: center; }

@@ -63,7 +63,7 @@
     const rows = [...P].sort((x, y) => y.date.localeCompare(x.date)).slice(0, 15);
     $("pPolls").innerHTML = `<thead><tr><th>תאריך</th><th>סוקר</th><th>גוף מפרסם</th><th class="n">מנדטים</th><th>קובץ</th></tr></thead><tbody>${rows.map(x => {
       const v = x.seats[p.id];
-      return `<tr><td class="num">${fmtDate(x.date, true)}</td><td>${esc(x.pollster)}</td><td>${esc(x.outlet)}</td><td class="n ${!v ? "zero" : ""}"><b>${v ?? "—"}</b></td><td><a href="${esc(x.url)}" target="_blank" rel="noopener">PDF</a></td></tr>`;
+      return `<tr><td class="num">${fmtDate(x.date, true)}</td><td>${esc(x.pollster)}</td><td>${esc(x.outlet)}</td><td class="n ${!v ? "zero" : ""}"><b>${v ?? "—"}</b></td><td><a href="${esc(x.url)}" target="_blank" rel="noopener">${x.pending ? "כתבה" : "PDF"}</a>${x.pending ? ` <span class="pend" title="${esc(x.note)}">טרם בוועדה</span>` : ""}</td></tr>`;
     }).join("")}</tbody>`;
     window.scrollTo(0, 0);
   }

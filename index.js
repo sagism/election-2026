@@ -6,7 +6,9 @@
   // ---------- header ----------
   const left = daysBetween(todayIso(), E.electionDate);
   $("daysLeft").textContent = left >= 0 ? left : "0";
-  $("pollCount").textContent = P.length;
+  const pend = P.filter(p => p.pending).length;
+  $("pollCount").textContent = P.length - pend;
+  if (pend) $("pollCount").nextElementSibling.textContent = `סקרים רשמיים + ${pend} מהתקשורת`;
   const newest = P.length ? [...P].sort((a, b) => b.date.localeCompare(a.date))[0].date : null;
   $("updatedLine").textContent = `מידע על מפלגות עודכן ב-${fmtDate(E.updated, true)} · סקר אחרון: ${newest ? fmtDate(newest, true) : "אין"}`;
   const factTitles = ["מתי ואיך", "מי מתמודד", "בית המשפט העליון", "הסכמי עודפים"];
@@ -170,7 +172,7 @@
     const body = rows.map(p => `<tr><td class="num">${fmtDate(p.date, true)}</td><td>${esc(p.pollster)}</td><td>${esc(p.outlet)}</td>${E.active.map(x => {
       const v = p.seats[x.id];
       return v === null || v === undefined ? `<td class="n zero">—</td>` : `<td class="n ${v === 0 ? "zero" : ""}">${v}</td>`;
-    }).join("")}<td><a href="${esc(p.url)}" target="_blank" rel="noopener" title="${esc(p.note || "")}">PDF</a></td></tr>`).join("");
+    }).join("")}<td><a href="${esc(p.url)}" target="_blank" rel="noopener" title="${esc(p.note || "")}">${p.pending ? "כתבה" : "PDF"}</a>${p.pending ? ` <span class="pend" title="${esc(p.note)}">טרם בוועדה</span>` : ""}</td></tr>`).join("");
     $("pollsTable").innerHTML = head + `<tbody>${body}</tbody>`;
   }
   $("pollsterFilter").addEventListener("change", renderPolls);

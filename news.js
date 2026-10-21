@@ -69,7 +69,7 @@
     }
     return `<article class="np-card panel rise" style="--i:${i}">
       <div class="np-head">${isNew ? '<span class="np-new">חדש</span>' : ""}<b>${esc(p.pollster)}</b><span class="muted small">${esc(p.outlet)} · ${fmtDate(p.date, true)}${late}</span>
-        <a class="small np-pdf" href="${esc(p.url)}" target="_blank" rel="noopener">PDF ↗</a></div>
+        ${p.pending ? `<span class="pend" title="${esc(p.note)}">טרם דווח לוועדה</span>` : ""}<a class="small np-pdf" href="${esc(p.url)}" target="_blank" rel="noopener">${p.pending ? `כתבה ב${esc(p.source || "תקשורת")}` : "PDF"} ↗</a></div>
       <div class="np-seats">${top}</div>${changes}</article>`;
   }).join("");
 
@@ -89,5 +89,5 @@
       </div>
       <div class="np-cards">${cards}</div>
     </div>
-    <p class="small muted">השינויים בכל סקר מושווים לסקר הקודם של אותו סוקר, כי לכל סוקר יש נטייה קבועה משלו. שינוי של מנדט או שניים בסקר בודד הוא לרוב בתחום טעות הדגימה.</p>`;
+    <p class="small muted">השינויים בכל סקר מושווים לסקר הקודם של אותו סוקר, כי לכל סוקר יש נטייה קבועה משלו. שינוי של מנדט או שניים בסקר בודד הוא לרוב בתחום טעות הדגימה. סקר שמסומן "טרם דווח לוועדה" נלקח מדיווח בתקשורת, ויוחלף בקובץ הרשמי כשיתפרסם באתר ועדת הבחירות.</p>`;
 })();

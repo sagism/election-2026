@@ -85,7 +85,7 @@
     const pts = [];
     const series = order.map(g => {
       const line = slotOf(g.key) >= 0 && g.polls.length > 1 ? `<path class="hl" d="${path(g.polls.map(x => [x.date, x.seats[id]]))}" style="stroke:${g.color}"/>` : "";
-      const dots = g.polls.map(x => { pts.push({ x: X(x.date), y: Y(x.seats[id]), poll: x, g }); return `<circle class="hd" cx="${X(x.date).toFixed(1)}" cy="${Y(x.seats[id]).toFixed(1)}" r="4" style="fill:${g.color}"/>`; }).join("");
+      const dots = g.polls.map(x => { pts.push({ x: X(x.date), y: Y(x.seats[id]), poll: x, g }); return `<circle class="hd" cx="${X(x.date).toFixed(1)}" cy="${Y(x.seats[id]).toFixed(1)}" r="4" style="${x.pending ? `fill:var(--surface);stroke:${g.color};stroke-width:2` : `fill:${g.color}`}"/>`; }).join("");
       return `<g class="hs" data-k="${esc(g.key)}" ${hidden.has(g.key) ? 'style="display:none"' : ""}>${line}${dots}</g>`;
     }).join("");
 
@@ -111,7 +111,7 @@
       ring.setAttribute("cx", best.x); ring.setAttribute("cy", best.y); ring.style.stroke = best.g.color;
       cross.setAttribute("x1", best.x); cross.setAttribute("x2", best.x);
       highlight(best.g.key);
-      tip.innerHTML = `<b><i style="background:${best.g.color}"></i>${esc(x.outlet)}</b><span class="muted">${esc(x.pollster)} · ${fmtDate(x.date, true)}</span>
+      tip.innerHTML = `<b><i style="background:${best.g.color}"></i>${esc(x.outlet)}</b><span class="muted">${esc(x.pollster)} · ${fmtDate(x.date, true)}${x.pending ? " · טרם דווח לוועדה" : ""}</span>
         <span class="big">${v} מנדטים</span>${a !== null ? `<span class="muted">שאר הסוקרים באותו זמן: ${a.toFixed(1)} <span dir="ltr">(${v - a >= 0 ? "+" : "−"}${Math.abs(v - a).toFixed(1)})</span></span>` : ""}`;
       tip.hidden = false;
       const cw = $("hChart").clientWidth, px = best.x * r.width / W, py = best.y * r.height / H;
