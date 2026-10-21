@@ -30,7 +30,8 @@
     [...raw].sort((a, b) => b.rem - a.rem).forEach(r => { if (left > 0) { r.n++; left--; } });
     // מקבצים לפי משפחה, ובתוך משפחה לפי גודל
     const famIdx = id => E.FAMILIES.findIndex(f => f.ids.includes(id));
-    return raw.sort((a, b) => famIdx(a.id) - famIdx(b.id) || b.q - a.q);
+    const subIdx = id => E.FAMILIES[famIdx(id)].ids.indexOf(id);
+    return raw.sort((a, b) => famIdx(a.id) - famIdx(b.id) || subIdx(a.id) - subIdx(b.id));
   }
   function drawHemicycle(rows) {
     const seats = seatsFromAvg(rows);

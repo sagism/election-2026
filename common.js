@@ -7,12 +7,10 @@
   const COLORS = Object.fromEntries(E.parties.map(p => [p.id, `var(--c-${p.id})`]));
   // סדר המשפחות קובע גם את סדר המושבים במפת הכנסת (מימין לשמאל)
   E.FAMILIES = [
-    { label: "חרדים", hue: "זהב", ids: ["shas", "utj"] },
-    { label: "ימין דתי-לאומי", hue: "טורקיז", ids: ["rzp", "otzma"] },
-    { label: "ימין ציוני", hue: "כחול", ids: ["likud", "yb", "amcha"] },
-    { label: "מרכז", hue: "סגול", ids: ["yashar", "together", "reservists", "bw"] },
-    { label: "שמאל", hue: "אדום", ids: ["dems"] },
-    { label: "מפלגות ערביות", hue: "ירוק", ids: ["joint", "raam"] }
+    { label: "חרדים", hue: "צהוב", ids: ["shas", "utj"] },
+    { label: "דתיים-לאומיים", hue: "סגול", ids: ["otzma", "rzp"] },
+    { label: "ציונים", hue: "כחול", ids: ["likud", "amcha", "yb", "reservists", "together", "yashar", "bw", "dems"] },
+    { label: "ערבים", hue: "ירוק", ids: ["joint", "raam"] }
   ];
   E.parties.forEach(p => { p.color = COLORS[p.id] || "#666"; });
   // רשימות שפרשו לא נכנסות לממוצעים, לטבלאות הסקרים ולמפת המושבים

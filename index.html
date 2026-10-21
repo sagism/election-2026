@@ -43,6 +43,7 @@
     <a href="#market">שוק התחזיות</a>
     <a href="#polls-avg">ממוצע</a>
     <a href="house.html">לפי סוקר</a>
+    <a href="#tribes">מפת השבטים</a>
     <a href="#parties">מפלגות ומועמדים</a>
     <a href="#compare">השוואת עמדות</a>
     <a href="#coalition">מחשבון קואליציה</a>
@@ -93,6 +94,11 @@
     <div class="families" id="families"></div>
     <div class="drill-hint"><b>←</b> לחצו על מפלגה כלשהי (בגרף, במפת המושבים או בכרטיסים) כדי לראות את כל הפרטים עליה</div>
     <p class="small muted">העמודה היא הממוצע. הקו הדק מראה את הטווח בין הסקר הנמוך לגבוה בתקופה. הקו המקווקו: אחוז החסימה (כ-4 מנדטים).</p>
+  </section>
+
+  <section id="tribes" aria-labelledby="tribes-h">
+    <header><div><h2 id="tribes-h">מפת השבטים</h2><p class="muted small" style="max-width:70ch">כמה מנדטים מקבל כל מגזר לפי ממוצע הסקרים: מפלגות ציוניות, דתיות-לאומיות, חרדיות וערביות, ואיך זה בהשוואה לבחירות 2022.</p></div></header>
+    <div id="tribesBody"></div>
   </section>
 
   <section id="parties" aria-labelledby="parties-h">
@@ -193,6 +199,7 @@
 <script src="common.js"></script>
 <script src="index.js"></script>
 <script src="news.js"></script>
+<script src="tribes.js"></script>
 <script src="polymarket.js"></script>
 <script src="market.js"></script>
 </body>

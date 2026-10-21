@@ -178,13 +178,21 @@ def main():
         print("נוסף:", a["ref"], a["date"], a["pollster"], a["outlet"], a["seats"])
     for ref, why in skipped:
         print("דולג:", ref, why)
-    # סקר רשמי מחליף את הגרסה שנלקחה מהתקשורת (אותו סוקר או אותו גוף מפרסם, עד יום הפרש)
+    # סקר רשמי מחליף את הגרסה שנלקחה מהתקשורת, רק כשברור שזה אותו סקר:
+    # אותו סוקר או גוף מפרסם, ו(אותם מנדטים בדיוק עד יומיים הפרש, או אותו תאריך).
+    # התאמה חלקית (תאריך קרוב, מספרים שונים) רק מודפסת לבדיקה ידנית.
+    def who(a, p):
+        return a["pollster"] == p["pollster"] or a["outlet"] == p["outlet"]
+    def gap(a, p):
+        return abs((dt.date.fromisoformat(a["date"]) - dt.date.fromisoformat(p["date"])).days)
     def same(a, p):
-        near = abs((dt.date.fromisoformat(a["date"]) - dt.date.fromisoformat(p["date"])).days) <= 1
-        return p.get("pending") and near and (a["pollster"] == p["pollster"] or a["outlet"] == p["outlet"])
+        return p.get("pending") and who(a, p) and ((a["seats"] == p["seats"] and gap(a, p) <= 2) or gap(a, p) == 0)
     replaced = [p for p in polls if any(same(a, p) for a in added)]
     for p in replaced:
         print("הוחלף בסקר הרשמי:", p["ref"], p["date"], p["pollster"], p["outlet"])
+    for p in polls:
+        if p.get("pending") and p not in replaced and any(who(a, p) and gap(a, p) <= 1 for a in added):
+            print("לבדיקה ידנית: ייתכן שהסקר הרשמי הוא", p["ref"], p["date"], p["outlet"], "(מספרים שונים)")
     polls = [p for p in polls if p not in replaced]
     if added and not args.dry_run:
         write_js(polls + added)

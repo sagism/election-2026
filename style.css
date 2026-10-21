@@ -462,3 +462,51 @@ ol.cands { list-style: none; margin: 0; padding: 0; display: grid; grid-template
 
 /* poll taken from the media, not yet in the elections committee list */
 .pend { display: inline-block; font-size: .7rem; font-weight: 800; padding: 1px 8px; border-radius: 999px; white-space: nowrap; color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, var(--surface)); border: 1px dashed color-mix(in srgb, var(--warn) 60%, transparent); align-self: center; }
+
+/* tribes map */
+.tb-bar { padding: 16px 18px 10px; }
+.tb-groups { display: flex; gap: 6px; align-items: flex-end; }
+.tb-group { min-width: 0; }
+.tb-label { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+.tb-label span { font-family: var(--display); font-size: 1.1rem; }
+.tb-segs { display: flex; gap: 2px; height: 30px; }
+.tb-seg { display: block; min-width: 3px; background: var(--pc); border-radius: 4px; transition: opacity .15s; }
+.tb-groups:hover .tb-seg { opacity: .55; } .tb-groups .tb-seg:hover { opacity: 1; }
+.tb-axis { display: flex; justify-content: space-between; margin-top: 6px; }
+.tb-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-block: 12px; }
+@media (max-width: 980px) { .tb-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .tb-cards { grid-template-columns: 1fr; } .tb-label { font-size: .72rem; } .tb-label span { font-size: .9rem; } }
+.tb-card { padding: 14px 16px; display: grid; gap: 8px; align-content: start; border-top: 4px solid var(--tc); }
+.tb-legend { display: none; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; }
+.tb-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-inline-end: 5px; }
+@media (max-width: 520px) { .tb-label { display: none; } .tb-legend { display: flex; } }
+.tb-card header h3 { margin: 0; }
+.tb-num b { font-family: var(--display); font-weight: 400; font-size: 2.2rem; line-height: 1; margin-inline-end: 6px; }
+.tb-deltas { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 0; }
+.tb-deltas dt { font-size: .72rem; color: var(--ink-2); }
+.tb-deltas dd { margin: 0; font-weight: 800; font-variant-numeric: tabular-nums; }
+.tb-deltas dd.up { color: var(--good); } .tb-deltas dd.down { color: #d64545; }
+.tb-card svg { width: 100%; height: auto; display: block; }
+.tb-line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.tb-ref { stroke: var(--ink-2); stroke-dasharray: 4 4; opacity: .55; }
+.tb-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.tb-chips .chip { text-decoration: none; }
+.tb-chips .chip.tb-out { opacity: .55; }
+
+.tb-chips .chip { background: color-mix(in srgb, var(--pc) 22%, var(--surface)); }
+
+/* party colors by tribe: blue = Zionist, purple = national-religious, yellow = Haredi, green = Arab.
+   This block overrides the earlier per-party colors (same selectors, later in the file). */
+:root {
+  --c-likud: #1e3a8a; --c-yashar: #2563eb; --c-together: #0284c7; --c-dems: #6366f1; --c-yb: #60a5fa; --c-reservists: #93c5fd; --c-amcha: #3730a3; --c-bw: #94a3b8;
+  --c-otzma: #6b21a8; --c-rzp: #a855f7; --c-shas: #a16207; --c-utj: #eab308; --c-joint: #15803d; --c-raam: #22c55e;
+  --tz: #2563eb; --tn: #7e22ce; --th: #ca8a04; --ta: #16a34a;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --c-likud: #4f7cf0; --c-yashar: #60a5fa; --c-together: #38bdf8; --c-dems: #818cf8; --c-yb: #93c5fd; --c-reservists: #bfdbfe; --c-amcha: #6366f1; --c-bw: #94a3b8;
+  --c-otzma: #a855f7; --c-rzp: #d8b4fe; --c-shas: #eab308; --c-utj: #fde047; --c-joint: #22c55e; --c-raam: #86efac;
+  --tz: #60a5fa; --tn: #c084fc; --th: #eab308; --ta: #22c55e; } }
+:root[data-theme="dark"] {
+  --c-likud: #4f7cf0; --c-yashar: #60a5fa; --c-together: #38bdf8; --c-dems: #818cf8; --c-yb: #93c5fd; --c-reservists: #bfdbfe; --c-amcha: #6366f1; --c-bw: #94a3b8;
+  --c-otzma: #a855f7; --c-rzp: #d8b4fe; --c-shas: #eab308; --c-utj: #fde047; --c-joint: #22c55e; --c-raam: #86efac;
+  --tz: #60a5fa; --tn: #c084fc; --th: #eab308; --ta: #22c55e; }
