@@ -1,34 +1,6 @@
 // נוצר אוטומטית מתוך polls.json — אפשר לערוך ידנית או להריץ update_polls.py
 window.POLLS = [
  {
-  "ref": "m-20261021-ch14",
-  "date": "2026-10-21",
-  "published": "2026-10-21",
-  "pollster": "נקסט דאטה",
-  "outlet": "ערוץ 14",
-  "url": "https://www.c14.co.il/article/1748686",
-  "source": "ערוץ 14",
-  "pending": true,
-  "seats": {
-   "likud": 30,
-   "yashar": 20,
-   "together": 10,
-   "dems": 9,
-   "yb": 5,
-   "utj": 7,
-   "shas": 10,
-   "otzma": 8,
-   "rzp": 7,
-   "joint": 8,
-   "raam": 6,
-   "amcha": 0,
-   "reservists": 0,
-   "bw": 0,
-   "haredi": 0
-  },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. מתחת לסף: המילואימניקים 2.2%, עמך ישראל 1.7%."
- },
- {
   "ref": "m-20261021-ch13",
   "date": "2026-10-21",
   "published": "2026-10-21",
@@ -85,6 +57,32 @@ window.POLLS = [
   "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
  },
  {
+  "ref": "4240",
+  "date": "2026-10-21",
+  "published": "2026-10-22",
+  "pollster": "נקסט דאטה",
+  "outlet": "ערוץ 14",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election129/he/Survey_4240.pdf",
+  "seats": {
+   "likud": 30,
+   "yashar": 20,
+   "together": 10,
+   "dems": 9,
+   "yb": 5,
+   "utj": 7,
+   "shas": 10,
+   "otzma": 8,
+   "rzp": 7,
+   "joint": 8,
+   "raam": 6,
+   "amcha": 0,
+   "reservists": 0,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
+ },
+ {
   "ref": "m-20261020-i24",
   "date": "2026-10-20",
   "published": "2026-10-20",
@@ -113,14 +111,12 @@ window.POLLS = [
   "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
  },
  {
-  "ref": "m-20261020-ch14",
+  "ref": "4238",
   "date": "2026-10-20",
-  "published": "2026-10-20",
+  "published": "2026-10-22",
   "pollster": "נקסט דאטה",
   "outlet": "ערוץ 14",
-  "url": "https://www.ice.co.il/research/news/article/1134443",
-  "source": "ICE",
-  "pending": true,
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election131/he/Survey_4238.pdf",
   "seats": {
    "likud": 30,
    "yashar": 20,
@@ -138,17 +134,15 @@ window.POLLS = [
    "bw": 0,
    "haredi": 0
   },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
+  "note": ""
  },
  {
-  "ref": "m-20261019-walla",
+  "ref": "4241",
   "date": "2026-10-19",
-  "published": "2026-10-20",
+  "published": "2026-10-22",
   "pollster": "מנחם לזר",
   "outlet": "וואלה",
-  "url": "https://walla.co.il/news/politics/383958175",
-  "source": "וואלה",
-  "pending": true,
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election130/he/Survey_4241.pdf",
   "seats": {
    "likud": 19,
    "yashar": 23,
@@ -166,7 +160,33 @@ window.POLLS = [
    "bw": 0,
    "haredi": 0
   },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
+  "note": ""
+ },
+ {
+  "ref": "4237",
+  "date": "2026-10-19",
+  "published": "2026-10-22",
+  "pollster": "מאגר מוחות",
+  "outlet": "ערוץ 16",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election128/he/Survey_4237.pdf",
+  "seats": {
+   "likud": 18,
+   "yashar": 21,
+   "together": 15,
+   "dems": 9,
+   "yb": 7,
+   "utj": 7,
+   "shas": 6,
+   "otzma": 9,
+   "rzp": 6,
+   "joint": 9,
+   "raam": 5,
+   "amcha": 4,
+   "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": ""
  },
  {
   "ref": "4233",
