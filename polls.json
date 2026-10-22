@@ -1,31 +1,31 @@
 [
  {
-  "ref": "m-20261021-ch13",
+  "ref": "m-20261021-ih",
   "date": "2026-10-21",
-  "published": "2026-10-21",
-  "pollster": "שמואל רוזנר (מדגם)",
-  "outlet": "חדשות 13",
-  "url": "https://www.zman.co.il/live/735332/",
-  "source": "זמן ישראל",
+  "published": "2026-10-22",
+  "pollster": "קנטאר",
+  "outlet": "ישראל היום",
+  "url": "https://www.israelhayom.co.il/news/politics/article/21687549",
+  "source": "ישראל היום",
   "pending": true,
   "seats": {
-   "likud": 19,
-   "yashar": 20,
+   "likud": 21,
+   "yashar": 23,
    "together": 14,
-   "dems": 10,
-   "yb": 8,
-   "utj": 8,
-   "shas": 7,
-   "otzma": 7,
-   "rzp": 8,
+   "dems": 8,
+   "yb": 7,
+   "utj": 7,
+   "shas": 8,
+   "otzma": 8,
+   "rzp": 6,
    "joint": 9,
-   "raam": 6,
+   "raam": 5,
    "amcha": 0,
    "reservists": 4,
    "bw": 0,
    "haredi": 0
   },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. הכתבה לא מציינת את עורך הסקר; שויך לסוקר של הסקרים הקודמים של חדשות 13."
+  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. נערך 21-22.10, מדגם כפול (1,110). עמך ישראל 2.7%, מתחת לסף."
  },
  {
   "ref": "m-20261021-ch12",
@@ -82,14 +82,13 @@
   "note": ""
  },
  {
-  "ref": "m-20261020-i24",
+  "ref": "4243",
   "date": "2026-10-20",
-  "published": "2026-10-20",
+  "published": "2026-10-22",
   "pollster": "דיירקט פולס",
   "outlet": "i24NEWS",
-  "url": "https://www.ice.co.il/research/news/article/1134449",
-  "source": "ICE",
-  "pending": true,
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election133/he/Survey_4243.pdf",
+  "note": "",
   "seats": {
    "likud": 26,
    "yashar": 20,
@@ -106,8 +105,33 @@
    "reservists": 0,
    "bw": 0,
    "haredi": 0
-  },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
+  }
+ },
+ {
+  "ref": "4242",
+  "date": "2026-10-20",
+  "published": "2026-10-22",
+  "pollster": "שמואל רוזנר (מדגם)",
+  "outlet": "חדשות 13",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election132/he/Survey_4242.pdf",
+  "note": "",
+  "seats": {
+   "likud": 19,
+   "yashar": 20,
+   "together": 14,
+   "dems": 10,
+   "yb": 8,
+   "utj": 8,
+   "shas": 7,
+   "otzma": 7,
+   "rzp": 8,
+   "joint": 9,
+   "raam": 6,
+   "amcha": 0,
+   "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  }
  },
  {
   "ref": "4238",
