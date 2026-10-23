@@ -1,5 +1,89 @@
 [
  {
+  "ref": "m-20261022-maariv",
+  "date": "2026-10-22",
+  "published": "2026-10-23",
+  "pollster": "מנחם לזר",
+  "outlet": "מעריב",
+  "url": "https://www.ice.co.il/research/news/article/1134790",
+  "source": "ICE",
+  "pending": true,
+  "seats": {
+   "likud": 19,
+   "yashar": 21,
+   "together": 15,
+   "dems": 10,
+   "yb": 8,
+   "utj": 7,
+   "shas": 8,
+   "otzma": 7,
+   "rzp": 7,
+   "joint": 9,
+   "raam": 5,
+   "amcha": 0,
+   "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. תאריך העריכה לא פורסם; הסקר פורסם ב-23.10. עמך ישראל 3%, מתחת לסף."
+ },
+ {
+  "ref": "m-20261022-ch16",
+  "date": "2026-10-22",
+  "published": "2026-10-22",
+  "pollster": "מאגר מוחות",
+  "outlet": "ערוץ 16",
+  "url": "https://www.ice.co.il/research/news/article/1134767",
+  "source": "ICE",
+  "pending": true,
+  "seats": {
+   "likud": 17,
+   "yashar": 20,
+   "together": 14,
+   "dems": 9,
+   "yb": 7,
+   "utj": 8,
+   "shas": 7,
+   "otzma": 9,
+   "rzp": 7,
+   "joint": 9,
+   "raam": 5,
+   "amcha": 4,
+   "reservists": 4,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
+ },
+ {
+  "ref": "m-20261022-ch14",
+  "date": "2026-10-22",
+  "published": "2026-10-22",
+  "pollster": "נקסט דאטה",
+  "outlet": "ערוץ 14",
+  "url": "https://www.c14.co.il/article/1750553",
+  "source": "ערוץ 14",
+  "pending": true,
+  "seats": {
+   "likud": 30,
+   "yashar": 20,
+   "together": 11,
+   "dems": 8,
+   "yb": 5,
+   "utj": 8,
+   "shas": 9,
+   "otzma": 8,
+   "rzp": 7,
+   "joint": 8,
+   "raam": 6,
+   "amcha": 0,
+   "reservists": 0,
+   "bw": 0,
+   "haredi": 0
+  },
+  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. מתחת לסף: המילואימניקים 1.9%, עמך ישראל 1.5%."
+ },
+ {
   "ref": "m-20261021-ih",
   "date": "2026-10-21",
   "published": "2026-10-22",
@@ -28,14 +112,13 @@
   "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם. נערך 21-22.10, מדגם כפול (1,110). עמך ישראל 2.7%, מתחת לסף."
  },
  {
-  "ref": "m-20261021-ch12",
+  "ref": "4245",
   "date": "2026-10-21",
-  "published": "2026-10-21",
+  "published": "2026-10-23",
   "pollster": "מדגם",
   "outlet": "חדשות 12",
-  "url": "https://www.walla.co.il/news/politics/383958398",
-  "source": "וואלה",
-  "pending": true,
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election134/he/Survey_4245.pdf",
+  "note": "",
   "seats": {
    "likud": 19,
    "yashar": 23,
@@ -52,8 +135,7 @@
    "reservists": 0,
    "bw": 0,
    "haredi": 0
-  },
-  "note": "פורסם בתקשורת, טרם דווח לוועדת הבחירות. יוחלף בקובץ הרשמי כשיפורסם."
+  }
  },
  {
   "ref": "4240",
@@ -158,6 +240,32 @@
    "haredi": 0
   },
   "note": ""
+ },
+ {
+  "ref": "4247",
+  "date": "2026-10-19",
+  "published": "2026-10-23",
+  "pollster": "מכון די אר איי",
+  "outlet": "עצמאי",
+  "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election135/he/Survey_4247.pdf",
+  "note": "סקר עצמאי, ללא מזמין חיצוני.",
+  "seats": {
+   "likud": 28,
+   "yashar": 23,
+   "together": 9,
+   "dems": 8,
+   "yb": 7,
+   "utj": 7,
+   "shas": 8,
+   "otzma": 8,
+   "rzp": 9,
+   "joint": 8,
+   "raam": 5,
+   "amcha": 0,
+   "reservists": 0,
+   "bw": 0,
+   "haredi": 0
+  }
  },
  {
   "ref": "4241",
